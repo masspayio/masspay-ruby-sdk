@@ -7,8 +7,6 @@ All URIs are relative to *https://api.masspay.io/v0.1.4*
 | [**create_user**](UserApi.md#create_user) | **POST** /user | Create a user |
 | [**get_user_by_token**](UserApi.md#get_user_by_token) | **GET** /user/{user_token} | Get user by user token |
 | [**get_user_history**](UserApi.md#get_user_history) | **GET** /user/{user_token}/history | Transactions history |
-| [**get_user_user_token_kyc_au10tix**](UserApi.md#get_user_user_token_kyc_au10tix) | **GET** /user/{user_token}/kyc/au10tix | Get an Au10tix session link |
-| [**get_user_user_token_kyc_veriiff**](UserApi.md#get_user_user_token_kyc_veriiff) | **GET** /user/{user_token}/kyc/veriff | Get a Veriff session link |
 | [**update_user**](UserApi.md#update_user) | **PUT** /user/{user_token} | Updated user |
 | [**user_lookup**](UserApi.md#user_lookup) | **GET** /user/lookup | Lookup an existing user |
 
@@ -19,7 +17,7 @@ All URIs are relative to *https://api.masspay.io/v0.1.4*
 
 Create a user
 
-To create a user, send a `POST` request to the `/user` endpoint and include the user details in JSON format in the request body. Upon creation of a user, you'll receive a user_token which would be used to interact with that user.
+This **POST** endpoint is used to create a new user in MassPay. <br> You can use this endpoint to create a new user with the specified user details in JSON format in the request Body. <br> To use this endpoint, you need to provide the `internal_user_id`, `country`, `first_name`, `last_name`, and `email` as required parameters in the Request Body. <br> The response will include details about the newly created user.
 
 ### Examples
 
@@ -28,13 +26,10 @@ require 'time'
 require 'masspay_ruby_sdk'
 # setup authorization
 MassPayRubySdk.configure do |config|
-  # Configure API key authorization: api_key
-  config.api_key['api_key'] = 'YOUR API KEY'
+  # Configure API key authorization: AUTHORIZER_NAME
+  config.api_key['AUTHORIZER_NAME'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  # config.api_key_prefix['api_key'] = 'Bearer'
-
-  # Configure Bearer authorization: AUTHORIZER_NAME
-  config.access_token = 'YOUR_BEARER_TOKEN'
+  # config.api_key_prefix['AUTHORIZER_NAME'] = 'Bearer'
 end
 
 api_instance = MassPayRubySdk::UserApi.new
@@ -79,7 +74,7 @@ end
 
 ### Authorization
 
-[api_key](../README.md#api_key), [AUTHORIZER_NAME](../README.md#AUTHORIZER_NAME)
+[AUTHORIZER_NAME](../README.md#AUTHORIZER_NAME)
 
 ### HTTP request headers
 
@@ -93,7 +88,7 @@ end
 
 Get user by user token
 
-Gets a user profile for a provided user token.
+This **GET** endpoint is used to retrieve a user's profile by their user token in MassPay. <br> You can use this endpoint to obtain a user profile for a specified user token. <br> To use this endpoint, you need to provide the `user_token` as a required parameter in the URL Path. <br> The response will include all available details for the user.
 
 ### Examples
 
@@ -102,13 +97,10 @@ require 'time'
 require 'masspay_ruby_sdk'
 # setup authorization
 MassPayRubySdk.configure do |config|
-  # Configure API key authorization: api_key
-  config.api_key['api_key'] = 'YOUR API KEY'
+  # Configure API key authorization: AUTHORIZER_NAME
+  config.api_key['AUTHORIZER_NAME'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  # config.api_key_prefix['api_key'] = 'Bearer'
-
-  # Configure Bearer authorization: AUTHORIZER_NAME
-  config.access_token = 'YOUR_BEARER_TOKEN'
+  # config.api_key_prefix['AUTHORIZER_NAME'] = 'Bearer'
 end
 
 api_instance = MassPayRubySdk::UserApi.new
@@ -157,7 +149,7 @@ end
 
 ### Authorization
 
-[api_key](../README.md#api_key), [AUTHORIZER_NAME](../README.md#AUTHORIZER_NAME)
+[AUTHORIZER_NAME](../README.md#AUTHORIZER_NAME)
 
 ### HTTP request headers
 
@@ -171,7 +163,7 @@ end
 
 Transactions history
 
-Retrieve list of all tranasctions (payouts/loads/spendbacks) for a provider user.
+This **GET** endpoint is used to retrieve a list of all transactions, including payouts, loads, and spendbacks, for a provider user with the provided user token. <br> You can use this endpoint to obtain a comprehensive history of transactions for the provider user, allowing you to track and analyze their payment activities over time. <br> To use this endpoint, you need to provide the `user_token` as a parameter in the URL Path. <br> The response will contain a JSON array of transaction objects, each including transactions details.
 
 ### Examples
 
@@ -180,13 +172,10 @@ require 'time'
 require 'masspay_ruby_sdk'
 # setup authorization
 MassPayRubySdk.configure do |config|
-  # Configure API key authorization: api_key
-  config.api_key['api_key'] = 'YOUR API KEY'
+  # Configure API key authorization: AUTHORIZER_NAME
+  config.api_key['AUTHORIZER_NAME'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  # config.api_key_prefix['api_key'] = 'Bearer'
-
-  # Configure Bearer authorization: AUTHORIZER_NAME
-  config.access_token = 'YOUR_BEARER_TOKEN'
+  # config.api_key_prefix['AUTHORIZER_NAME'] = 'Bearer'
 end
 
 api_instance = MassPayRubySdk::UserApi.new
@@ -249,151 +238,7 @@ end
 
 ### Authorization
 
-[api_key](../README.md#api_key), [AUTHORIZER_NAME](../README.md#AUTHORIZER_NAME)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-
-## get_user_user_token_kyc_au10tix
-
-> <GetUserUserTokenKycAu10tix200Response> get_user_user_token_kyc_au10tix(user_token)
-
-Get an Au10tix session link
-
-### Examples
-
-```ruby
-require 'time'
-require 'masspay_ruby_sdk'
-# setup authorization
-MassPayRubySdk.configure do |config|
-  # Configure API key authorization: api_key
-  config.api_key['api_key'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  # config.api_key_prefix['api_key'] = 'Bearer'
-
-  # Configure Bearer authorization: AUTHORIZER_NAME
-  config.access_token = 'YOUR_BEARER_TOKEN'
-end
-
-api_instance = MassPayRubySdk::UserApi.new
-user_token = 'user_token_example' # String | 
-
-begin
-  # Get an Au10tix session link
-  result = api_instance.get_user_user_token_kyc_au10tix(user_token)
-  p result
-rescue MassPayRubySdk::ApiError => e
-  puts "Error when calling UserApi->get_user_user_token_kyc_au10tix: #{e}"
-end
-```
-
-#### Using the get_user_user_token_kyc_au10tix_with_http_info variant
-
-This returns an Array which contains the response data, status code and headers.
-
-> <Array(<GetUserUserTokenKycAu10tix200Response>, Integer, Hash)> get_user_user_token_kyc_au10tix_with_http_info(user_token)
-
-```ruby
-begin
-  # Get an Au10tix session link
-  data, status_code, headers = api_instance.get_user_user_token_kyc_au10tix_with_http_info(user_token)
-  p status_code # => 2xx
-  p headers # => { ... }
-  p data # => <GetUserUserTokenKycAu10tix200Response>
-rescue MassPayRubySdk::ApiError => e
-  puts "Error when calling UserApi->get_user_user_token_kyc_au10tix_with_http_info: #{e}"
-end
-```
-
-### Parameters
-
-| Name | Type | Description | Notes |
-| ---- | ---- | ----------- | ----- |
-| **user_token** | **String** |  |  |
-
-### Return type
-
-[**GetUserUserTokenKycAu10tix200Response**](GetUserUserTokenKycAu10tix200Response.md)
-
-### Authorization
-
-[api_key](../README.md#api_key), [AUTHORIZER_NAME](../README.md#AUTHORIZER_NAME)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-
-## get_user_user_token_kyc_veriiff
-
-> <GetUserUserTokenKycVeriiff200Response> get_user_user_token_kyc_veriiff(user_token)
-
-Get a Veriff session link
-
-### Examples
-
-```ruby
-require 'time'
-require 'masspay_ruby_sdk'
-# setup authorization
-MassPayRubySdk.configure do |config|
-  # Configure API key authorization: api_key
-  config.api_key['api_key'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  # config.api_key_prefix['api_key'] = 'Bearer'
-
-  # Configure Bearer authorization: AUTHORIZER_NAME
-  config.access_token = 'YOUR_BEARER_TOKEN'
-end
-
-api_instance = MassPayRubySdk::UserApi.new
-user_token = 'user_token_example' # String | 
-
-begin
-  # Get a Veriff session link
-  result = api_instance.get_user_user_token_kyc_veriiff(user_token)
-  p result
-rescue MassPayRubySdk::ApiError => e
-  puts "Error when calling UserApi->get_user_user_token_kyc_veriiff: #{e}"
-end
-```
-
-#### Using the get_user_user_token_kyc_veriiff_with_http_info variant
-
-This returns an Array which contains the response data, status code and headers.
-
-> <Array(<GetUserUserTokenKycVeriiff200Response>, Integer, Hash)> get_user_user_token_kyc_veriiff_with_http_info(user_token)
-
-```ruby
-begin
-  # Get a Veriff session link
-  data, status_code, headers = api_instance.get_user_user_token_kyc_veriiff_with_http_info(user_token)
-  p status_code # => 2xx
-  p headers # => { ... }
-  p data # => <GetUserUserTokenKycVeriiff200Response>
-rescue MassPayRubySdk::ApiError => e
-  puts "Error when calling UserApi->get_user_user_token_kyc_veriiff_with_http_info: #{e}"
-end
-```
-
-### Parameters
-
-| Name | Type | Description | Notes |
-| ---- | ---- | ----------- | ----- |
-| **user_token** | **String** |  |  |
-
-### Return type
-
-[**GetUserUserTokenKycVeriiff200Response**](GetUserUserTokenKycVeriiff200Response.md)
-
-### Authorization
-
-[api_key](../README.md#api_key), [AUTHORIZER_NAME](../README.md#AUTHORIZER_NAME)
+[AUTHORIZER_NAME](../README.md#AUTHORIZER_NAME)
 
 ### HTTP request headers
 
@@ -407,7 +252,7 @@ end
 
 Updated user
 
-Updates profile information for a provided user token.
+This **PUT** endpoint is used to update the profile information of a user with the provided user token. <br> You need to provide the `user_token` in the URL path to identify the user whose information you want to update. The updated information should be provided in the request Body as a JSON object. This endpoint can be used to update various profile information, such as the user's name, email address, phone number, and more. <br> The response will contain the updated user information in a JSON format.
 
 ### Examples
 
@@ -416,13 +261,10 @@ require 'time'
 require 'masspay_ruby_sdk'
 # setup authorization
 MassPayRubySdk.configure do |config|
-  # Configure API key authorization: api_key
-  config.api_key['api_key'] = 'YOUR API KEY'
+  # Configure API key authorization: AUTHORIZER_NAME
+  config.api_key['AUTHORIZER_NAME'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  # config.api_key_prefix['api_key'] = 'Bearer'
-
-  # Configure Bearer authorization: AUTHORIZER_NAME
-  config.access_token = 'YOUR_BEARER_TOKEN'
+  # config.api_key_prefix['AUTHORIZER_NAME'] = 'Bearer'
 end
 
 api_instance = MassPayRubySdk::UserApi.new
@@ -473,7 +315,7 @@ end
 
 ### Authorization
 
-[api_key](../README.md#api_key), [AUTHORIZER_NAME](../README.md#AUTHORIZER_NAME)
+[AUTHORIZER_NAME](../README.md#AUTHORIZER_NAME)
 
 ### HTTP request headers
 
@@ -487,7 +329,7 @@ end
 
 Lookup an existing user
 
-Looksup whether a user with the provided email and first name exist
+This **GET** endpoint is used to lookup whether a user with the provided email and first name exists in the MassPay system. <br> To use this endpoint, you need to provide the `email`, `first_name`, and `internal_user_id` as Query parameters in the URL. <br> The endpoint will then search for the user based on the provided information and return a JSON response indicating whether the user exists or not. If the user exists, the response will also contain the user's details, `user_token`, `first_name`, `last_name` and `internal_user_id`.
 
 ### Examples
 
@@ -496,13 +338,10 @@ require 'time'
 require 'masspay_ruby_sdk'
 # setup authorization
 MassPayRubySdk.configure do |config|
-  # Configure API key authorization: api_key
-  config.api_key['api_key'] = 'YOUR API KEY'
+  # Configure API key authorization: AUTHORIZER_NAME
+  config.api_key['AUTHORIZER_NAME'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  # config.api_key_prefix['api_key'] = 'Bearer'
-
-  # Configure Bearer authorization: AUTHORIZER_NAME
-  config.access_token = 'YOUR_BEARER_TOKEN'
+  # config.api_key_prefix['AUTHORIZER_NAME'] = 'Bearer'
 end
 
 api_instance = MassPayRubySdk::UserApi.new
@@ -555,7 +394,7 @@ end
 
 ### Authorization
 
-[api_key](../README.md#api_key), [AUTHORIZER_NAME](../README.md#AUTHORIZER_NAME)
+[AUTHORIZER_NAME](../README.md#AUTHORIZER_NAME)
 
 ### HTTP request headers
 

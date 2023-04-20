@@ -19,7 +19,7 @@ module MassPayRubySdk
       @api_client = api_client
     end
     # Attributes velocity check
-    # Identify users with matching attribute values
+    # This **POST** endpoint is used to perform an attributes velocity check to identify users with matching attribute values. <br> You can use this endpoint to help prevent fraudulent activities by monitoring for unusual attribute value changes over time. <br> To use this endpoint, you need to provide the `user_token` as a parameter in the URL path and the required parameters in the request Body. <br> The endpoint will then compare the provided attribute value with the historical attribute values for the same user and determine if it meets the velocity check criteria.
     # @param user_token [String] Token representing the user to retrieve attributes for
     # @param [Hash] opts the optional parameters
     # @option opts [String] :idempotency_key Unique key to prevent duplicate processing
@@ -31,7 +31,7 @@ module MassPayRubySdk
     end
 
     # Attributes velocity check
-    # Identify users with matching attribute values
+    # This **POST** endpoint is used to perform an attributes velocity check to identify users with matching attribute values. &lt;br&gt; You can use this endpoint to help prevent fraudulent activities by monitoring for unusual attribute value changes over time. &lt;br&gt; To use this endpoint, you need to provide the &#x60;user_token&#x60; as a parameter in the URL path and the required parameters in the request Body. &lt;br&gt; The endpoint will then compare the provided attribute value with the historical attribute values for the same user and determine if it meets the velocity check criteria.
     # @param user_token [String] Token representing the user to retrieve attributes for
     # @param [Hash] opts the optional parameters
     # @option opts [String] :idempotency_key Unique key to prevent duplicate processing
@@ -72,7 +72,7 @@ module MassPayRubySdk
       return_type = opts[:debug_return_type] || 'Array<Object>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['api_key', 'AUTHORIZER_NAME']
+      auth_names = opts[:debug_auth_names] || ['AUTHORIZER_NAME']
 
       new_options = opts.merge(
         :operation => :"KYCApi.find_attributes_velocity",
@@ -92,6 +92,7 @@ module MassPayRubySdk
     end
 
     # Get an Au10tix session link
+    # This **GET** endpoint is used to obtain a link to an Au10tix session for the user with the provided user token. <br> To use this endpoint, you need to provide the `user_token` as a parameter in the URL Path. <br> The endpoint will then generate a session link that you can use to initiate an identity verification process for the user through the Au10tix platform. <br> The response will contain the session link as a URL in a JSON format.
     # @param user_token [String] 
     # @param [Hash] opts the optional parameters
     # @return [GetUserUserTokenKycAu10tix200Response]
@@ -101,6 +102,7 @@ module MassPayRubySdk
     end
 
     # Get an Au10tix session link
+    # This **GET** endpoint is used to obtain a link to an Au10tix session for the user with the provided user token. &lt;br&gt; To use this endpoint, you need to provide the &#x60;user_token&#x60; as a parameter in the URL Path. &lt;br&gt; The endpoint will then generate a session link that you can use to initiate an identity verification process for the user through the Au10tix platform. &lt;br&gt; The response will contain the session link as a URL in a JSON format.
     # @param user_token [String] 
     # @param [Hash] opts the optional parameters
     # @return [Array<(GetUserUserTokenKycAu10tix200Response, Integer, Hash)>] GetUserUserTokenKycAu10tix200Response data, response status code and response headers
@@ -133,7 +135,7 @@ module MassPayRubySdk
       return_type = opts[:debug_return_type] || 'GetUserUserTokenKycAu10tix200Response'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['api_key', 'AUTHORIZER_NAME']
+      auth_names = opts[:debug_auth_names] || ['AUTHORIZER_NAME']
 
       new_options = opts.merge(
         :operation => :"KYCApi.get_user_user_token_kyc_au10tix",
@@ -153,25 +155,27 @@ module MassPayRubySdk
     end
 
     # Get a Veriff session link
+    # This **GET** endpoint is used to obtain a link to a Veriff session for the user with the provided user token. <br> The endpoint will then generate a session link that you can use to initiate an identity verification process for the user through the Veriff platform. <br> To use this endpoint, you need to provide the `user_token` as a parameter in the URL Path. <br> The response will contain the session link as a URL in a JSON format.
     # @param user_token [String] 
     # @param [Hash] opts the optional parameters
-    # @return [GetUserUserTokenKycVeriiff200Response]
-    def get_user_user_token_kyc_veriiff(user_token, opts = {})
-      data, _status_code, _headers = get_user_user_token_kyc_veriiff_with_http_info(user_token, opts)
+    # @return [GetUserUserTokenKycVeriff200Response]
+    def get_user_user_token_kyc_veriff(user_token, opts = {})
+      data, _status_code, _headers = get_user_user_token_kyc_veriff_with_http_info(user_token, opts)
       data
     end
 
     # Get a Veriff session link
+    # This **GET** endpoint is used to obtain a link to a Veriff session for the user with the provided user token. &lt;br&gt; The endpoint will then generate a session link that you can use to initiate an identity verification process for the user through the Veriff platform. &lt;br&gt; To use this endpoint, you need to provide the &#x60;user_token&#x60; as a parameter in the URL Path. &lt;br&gt; The response will contain the session link as a URL in a JSON format.
     # @param user_token [String] 
     # @param [Hash] opts the optional parameters
-    # @return [Array<(GetUserUserTokenKycVeriiff200Response, Integer, Hash)>] GetUserUserTokenKycVeriiff200Response data, response status code and response headers
-    def get_user_user_token_kyc_veriiff_with_http_info(user_token, opts = {})
+    # @return [Array<(GetUserUserTokenKycVeriff200Response, Integer, Hash)>] GetUserUserTokenKycVeriff200Response data, response status code and response headers
+    def get_user_user_token_kyc_veriff_with_http_info(user_token, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: KYCApi.get_user_user_token_kyc_veriiff ...'
+        @api_client.config.logger.debug 'Calling API: KYCApi.get_user_user_token_kyc_veriff ...'
       end
       # verify the required parameter 'user_token' is set
       if @api_client.config.client_side_validation && user_token.nil?
-        fail ArgumentError, "Missing the required parameter 'user_token' when calling KYCApi.get_user_user_token_kyc_veriiff"
+        fail ArgumentError, "Missing the required parameter 'user_token' when calling KYCApi.get_user_user_token_kyc_veriff"
       end
       # resource path
       local_var_path = '/user/{user_token}/kyc/veriff'.sub('{' + 'user_token' + '}', CGI.escape(user_token.to_s))
@@ -191,13 +195,13 @@ module MassPayRubySdk
       post_body = opts[:debug_body]
 
       # return_type
-      return_type = opts[:debug_return_type] || 'GetUserUserTokenKycVeriiff200Response'
+      return_type = opts[:debug_return_type] || 'GetUserUserTokenKycVeriff200Response'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['api_key', 'AUTHORIZER_NAME']
+      auth_names = opts[:debug_auth_names] || ['AUTHORIZER_NAME']
 
       new_options = opts.merge(
-        :operation => :"KYCApi.get_user_user_token_kyc_veriiff",
+        :operation => :"KYCApi.get_user_user_token_kyc_veriff",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -208,7 +212,77 @@ module MassPayRubySdk
 
       data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: KYCApi#get_user_user_token_kyc_veriiff\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: KYCApi#get_user_user_token_kyc_veriff\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Upload ID Photos
+    # Upload IDs for the provided user. This is an optional endpoint if the images are captured through means other than the link that is generated in the attributes.
+    # @param user_token [String] 
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<IDUpload>] :id_upload 
+    # @return [Object]
+    def upload_id_photos(user_token, opts = {})
+      data, _status_code, _headers = upload_id_photos_with_http_info(user_token, opts)
+      data
+    end
+
+    # Upload ID Photos
+    # Upload IDs for the provided user. This is an optional endpoint if the images are captured through means other than the link that is generated in the attributes.
+    # @param user_token [String] 
+    # @param [Hash] opts the optional parameters
+    # @option opts [Array<IDUpload>] :id_upload 
+    # @return [Array<(Object, Integer, Hash)>] Object data, response status code and response headers
+    def upload_id_photos_with_http_info(user_token, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: KYCApi.upload_id_photos ...'
+      end
+      # verify the required parameter 'user_token' is set
+      if @api_client.config.client_side_validation && user_token.nil?
+        fail ArgumentError, "Missing the required parameter 'user_token' when calling KYCApi.upload_id_photos"
+      end
+      # resource path
+      local_var_path = '/user/{user_token}/kyc/id'.sub('{' + 'user_token' + '}', CGI.escape(user_token.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json', 'application/xml'])
+      if !content_type.nil?
+          header_params['Content-Type'] = content_type
+      end
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body] || @api_client.object_to_http_body(opts[:'id_upload'])
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'Object'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['AUTHORIZER_NAME']
+
+      new_options = opts.merge(
+        :operation => :"KYCApi.upload_id_photos",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: KYCApi#upload_id_photos\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end

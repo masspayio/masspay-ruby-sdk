@@ -19,7 +19,7 @@ module MassPayRubySdk
       @api_client = api_client
     end
     # Get history of spend backs by user token
-    # Gets a list of all historical spendbacks for a provided user token.
+    # This **GET** endpoint is used to retrieve the history of spendbacks for a specific user token. <br> You can use this endpoint to help manage your payment operations and track the usage of funds by your users. <br> To use this endpoint, you need to provide the `user_token` as a parameter in the URL Path. <br> The endpoint will then return a list of all the historical spendbacks for the provided user token. The response will contain a JSON array with details for each spendback transaction.
     # @param user_token [String] Token representing the user to fetch/initiate spend back
     # @param [Hash] opts the optional parameters
     # @option opts [String] :idempotency_key Unique key to prevent duplicate processing
@@ -30,7 +30,7 @@ module MassPayRubySdk
     end
 
     # Get history of spend backs by user token
-    # Gets a list of all historical spendbacks for a provided user token.
+    # This **GET** endpoint is used to retrieve the history of spendbacks for a specific user token. &lt;br&gt; You can use this endpoint to help manage your payment operations and track the usage of funds by your users. &lt;br&gt; To use this endpoint, you need to provide the &#x60;user_token&#x60; as a parameter in the URL Path. &lt;br&gt; The endpoint will then return a list of all the historical spendbacks for the provided user token. The response will contain a JSON array with details for each spendback transaction.
     # @param user_token [String] Token representing the user to fetch/initiate spend back
     # @param [Hash] opts the optional parameters
     # @option opts [String] :idempotency_key Unique key to prevent duplicate processing
@@ -65,7 +65,7 @@ module MassPayRubySdk
       return_type = opts[:debug_return_type] || 'Array<SpendBacks>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['api_key', 'AUTHORIZER_NAME']
+      auth_names = opts[:debug_auth_names] || ['AUTHORIZER_NAME']
 
       new_options = opts.merge(
         :operation => :"SpendBackApi.get_user_spendbacks_by_token",
@@ -85,7 +85,7 @@ module MassPayRubySdk
     end
 
     # Initiate a spend back transaction
-    # Initiates a spend back transaction to a provided user token.
+    # This **POST** endpoint is used to initiate a spendback transaction to a provided user token. <br> You can use this endpoint to enable spendback transactions for your users and help them manage their funds more effectively. <br> To use this endpoint, you need to provide the `user_token` as a parameter in the URL Path, along with the required parameters in the request Body, including `client_spendback_id`, `source_token`, `source_currency_code` and `amount`. <br> The endpoint will then initiate the spendback transaction, transferring funds from the source token to the user token. The response will contain a JSON object indicating the status of the request and any relevant transaction details.
     # @param user_token [String] Token representing the user to fetch/initiate spend back
     # @param [Hash] opts the optional parameters
     # @option opts [String] :idempotency_key Unique key to prevent duplicate processing
@@ -97,7 +97,7 @@ module MassPayRubySdk
     end
 
     # Initiate a spend back transaction
-    # Initiates a spend back transaction to a provided user token.
+    # This **POST** endpoint is used to initiate a spendback transaction to a provided user token. &lt;br&gt; You can use this endpoint to enable spendback transactions for your users and help them manage their funds more effectively. &lt;br&gt; To use this endpoint, you need to provide the &#x60;user_token&#x60; as a parameter in the URL Path, along with the required parameters in the request Body, including &#x60;client_spendback_id&#x60;, &#x60;source_token&#x60;, &#x60;source_currency_code&#x60; and &#x60;amount&#x60;. &lt;br&gt; The endpoint will then initiate the spendback transaction, transferring funds from the source token to the user token. The response will contain a JSON object indicating the status of the request and any relevant transaction details.
     # @param user_token [String] Token representing the user to fetch/initiate spend back
     # @param [Hash] opts the optional parameters
     # @option opts [String] :idempotency_key Unique key to prevent duplicate processing
@@ -138,7 +138,7 @@ module MassPayRubySdk
       return_type = opts[:debug_return_type] || 'SpendBackTxnResp'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['api_key', 'AUTHORIZER_NAME']
+      auth_names = opts[:debug_auth_names] || ['AUTHORIZER_NAME']
 
       new_options = opts.merge(
         :operation => :"SpendBackApi.initiate_spendback",

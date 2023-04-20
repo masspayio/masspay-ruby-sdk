@@ -13,12 +13,12 @@ require 'date'
 require 'time'
 
 module MassPayRubySdk
-  class AttrVelocityRequestInner
-    # The type of attribute to look for
+  class IDUpload
+    # The type of image being uploaded
     attr_accessor :type
 
-    # The value to search for
-    attr_accessor :value
+    # Base64 encoded image (png|jpg|jpeg). Maximum total images size is 10MB
+    attr_accessor :content
 
     class EnumAttributeValidator
       attr_reader :datatype
@@ -46,7 +46,7 @@ module MassPayRubySdk
     def self.attribute_map
       {
         :'type' => :'type',
-        :'value' => :'value'
+        :'content' => :'content'
       }
     end
 
@@ -59,7 +59,7 @@ module MassPayRubySdk
     def self.openapi_types
       {
         :'type' => :'String',
-        :'value' => :'String'
+        :'content' => :'String'
       }
     end
 
@@ -73,13 +73,13 @@ module MassPayRubySdk
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `MassPayRubySdk::AttrVelocityRequestInner` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `MassPayRubySdk::IDUpload` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `MassPayRubySdk::AttrVelocityRequestInner`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `MassPayRubySdk::IDUpload`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
@@ -88,8 +88,8 @@ module MassPayRubySdk
         self.type = attributes[:'type']
       end
 
-      if attributes.key?(:'value')
-        self.value = attributes[:'value']
+      if attributes.key?(:'content')
+        self.content = attributes[:'content']
       end
     end
 
@@ -101,8 +101,8 @@ module MassPayRubySdk
         invalid_properties.push('invalid value for "type", type cannot be nil.')
       end
 
-      if @value.nil?
-        invalid_properties.push('invalid value for "value", value cannot be nil.')
+      if @content.nil?
+        invalid_properties.push('invalid value for "content", content cannot be nil.')
       end
 
       invalid_properties
@@ -112,16 +112,16 @@ module MassPayRubySdk
     # @return true if the model is valid
     def valid?
       return false if @type.nil?
-      type_validator = EnumAttributeValidator.new('String', ["CardNumber", "BankAccountType", "BankAccountNumber", "BankAccountBranchNumber", "BankName", "PhoneNumber", "Gender", "IdentificationNumber", "BillReferenceNumber", "BankRoutingNumber", "BankAccountName", "MaidenName", "SocialSecurity", "EmploymentName", "EmploymentAddress", "EmploymentPhone", "EmploymentOccupation", "EmploymentSupervisor", "RemittanceReason", "Relationship", "SecondLastName", "SWIFT", "BirthCountry", "SourceOfFunds", "DateOfBirth", "CardExpiration", "CardZip", "IdentificationType", "BankCity", "BankState", "IDSelfieCollection", "City", "Country", "IdentificationExpiration", "Address1"])
+      type_validator = EnumAttributeValidator.new('String', ["face", "document-front", "document-back"])
       return false unless type_validator.valid?(@type)
-      return false if @value.nil?
+      return false if @content.nil?
       true
     end
 
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] type Object to be assigned
     def type=(type)
-      validator = EnumAttributeValidator.new('String', ["CardNumber", "BankAccountType", "BankAccountNumber", "BankAccountBranchNumber", "BankName", "PhoneNumber", "Gender", "IdentificationNumber", "BillReferenceNumber", "BankRoutingNumber", "BankAccountName", "MaidenName", "SocialSecurity", "EmploymentName", "EmploymentAddress", "EmploymentPhone", "EmploymentOccupation", "EmploymentSupervisor", "RemittanceReason", "Relationship", "SecondLastName", "SWIFT", "BirthCountry", "SourceOfFunds", "DateOfBirth", "CardExpiration", "CardZip", "IdentificationType", "BankCity", "BankState", "IDSelfieCollection", "City", "Country", "IdentificationExpiration", "Address1"])
+      validator = EnumAttributeValidator.new('String', ["face", "document-front", "document-back"])
       unless validator.valid?(type)
         fail ArgumentError, "invalid value for \"type\", must be one of #{validator.allowable_values}."
       end
@@ -134,7 +134,7 @@ module MassPayRubySdk
       return true if self.equal?(o)
       self.class == o.class &&
           type == o.type &&
-          value == o.value
+          content == o.content
     end
 
     # @see the `==` method
@@ -146,7 +146,7 @@ module MassPayRubySdk
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [type, value].hash
+      [type, content].hash
     end
 
     # Builds the object from hash

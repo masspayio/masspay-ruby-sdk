@@ -19,7 +19,7 @@ module MassPayRubySdk
       @api_client = api_client
     end
     # Gets a list of Companies and their cheapest service offerings for the given country code.
-    # Gets a list of all the available services and pricing for each respected company for a provided country code. If two providers offer similar service, only show the cheapest option
+    # This **GET** endpoint is used to retrieve a list of companies and their cheapest service offerings for a specific country. <br> You can use this endpoint to obtain information about available services and pricing for each respected company in the provided country. If two providers offer similar services, only the cheapest option will be displayed. <br> To use this endpoint, you need to provide the `country_code` as a required parameter in the URL Path. <br> The response will include a JSON array containing details for each company, including the company name, cheapest service offerings, and pricing.
     # @param country_code [String] Country code searching services for. 3 letters [ISO_3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) code\&quot;
     # @param [Hash] opts the optional parameters
     # @option opts [String] :amount Returns the results fee based on the given amount, defaults to $200 (default to '200')
@@ -36,7 +36,7 @@ module MassPayRubySdk
     end
 
     # Gets a list of Companies and their cheapest service offerings for the given country code.
-    # Gets a list of all the available services and pricing for each respected company for a provided country code. If two providers offer similar service, only show the cheapest option
+    # This **GET** endpoint is used to retrieve a list of companies and their cheapest service offerings for a specific country. &lt;br&gt; You can use this endpoint to obtain information about available services and pricing for each respected company in the provided country. If two providers offer similar services, only the cheapest option will be displayed. &lt;br&gt; To use this endpoint, you need to provide the &#x60;country_code&#x60; as a required parameter in the URL Path. &lt;br&gt; The response will include a JSON array containing details for each company, including the company name, cheapest service offerings, and pricing.
     # @param country_code [String] Country code searching services for. 3 letters [ISO_3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) code\&quot;
     # @param [Hash] opts the optional parameters
     # @option opts [String] :amount Returns the results fee based on the given amount, defaults to $200 (default to '200')
@@ -88,7 +88,7 @@ module MassPayRubySdk
       return_type = opts[:debug_return_type] || 'CompaniesResp'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['api_key', 'AUTHORIZER_NAME']
+      auth_names = opts[:debug_auth_names] || ['AUTHORIZER_NAME']
 
       new_options = opts.merge(
         :operation => :"CatalogApi.get_cheapest_country_services",
@@ -108,7 +108,7 @@ module MassPayRubySdk
     end
 
     # Gets a list of countries where services offered.
-    # Get a list of all currently available countries of service.
+    # This **GET** endpoint is used to retrieve a list of all currently available countries of service. <br> You can use this endpoint to obtain a list of countries where MassPay services are offered. <br> There are no required parameters for this endpoint. <br> The response will include a JSON array containing details for each country, including the country code, name, and `three_letter_code`.
     # @param [Hash] opts the optional parameters
     # @return [Array<Country>]
     def get_country_list(opts = {})
@@ -117,7 +117,7 @@ module MassPayRubySdk
     end
 
     # Gets a list of countries where services offered.
-    # Get a list of all currently available countries of service.
+    # This **GET** endpoint is used to retrieve a list of all currently available countries of service. &lt;br&gt; You can use this endpoint to obtain a list of countries where MassPay services are offered. &lt;br&gt; There are no required parameters for this endpoint. &lt;br&gt; The response will include a JSON array containing details for each country, including the country code, name, and &#x60;three_letter_code&#x60;.
     # @param [Hash] opts the optional parameters
     # @return [Array<(Array<Country>, Integer, Hash)>] Array<Country> data, response status code and response headers
     def get_country_list_with_http_info(opts = {})
@@ -145,7 +145,7 @@ module MassPayRubySdk
       return_type = opts[:debug_return_type] || 'Array<Country>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['api_key', 'AUTHORIZER_NAME']
+      auth_names = opts[:debug_auth_names] || ['AUTHORIZER_NAME']
 
       new_options = opts.merge(
         :operation => :"CatalogApi.get_country_list",
@@ -165,7 +165,7 @@ module MassPayRubySdk
     end
 
     # Gets a list of Companies and their service offerings for the given country code.
-    # Gets a list of all the available services and pricing for each respected company for a provided country code.
+    # This **GET** endpoint is used to retrieve a list of companies and their service offerings for a specific country. <br> You can use this endpoint to obtain information about available services and pricing for each respected company in the provided country. <br> To use this endpoint, you need to provide the `country_code` in the URL Path. <br> The response will include a JSON array containing details for each company, including the company name, service offerings, and pricing.
     # @param country_code [String] Country code searching services for. 3 letters [ISO_3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) code\&quot;
     # @param [Hash] opts the optional parameters
     # @option opts [String] :amount Returns the results fee based on the given amount, defaults to $200 (default to '200')
@@ -182,7 +182,7 @@ module MassPayRubySdk
     end
 
     # Gets a list of Companies and their service offerings for the given country code.
-    # Gets a list of all the available services and pricing for each respected company for a provided country code.
+    # This **GET** endpoint is used to retrieve a list of companies and their service offerings for a specific country. &lt;br&gt; You can use this endpoint to obtain information about available services and pricing for each respected company in the provided country. &lt;br&gt; To use this endpoint, you need to provide the &#x60;country_code&#x60; in the URL Path. &lt;br&gt; The response will include a JSON array containing details for each company, including the company name, service offerings, and pricing.
     # @param country_code [String] Country code searching services for. 3 letters [ISO_3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) code\&quot;
     # @param [Hash] opts the optional parameters
     # @option opts [String] :amount Returns the results fee based on the given amount, defaults to $200 (default to '200')
@@ -234,7 +234,7 @@ module MassPayRubySdk
       return_type = opts[:debug_return_type] || 'CompaniesResp'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['api_key', 'AUTHORIZER_NAME']
+      auth_names = opts[:debug_auth_names] || ['AUTHORIZER_NAME']
 
       new_options = opts.merge(
         :operation => :"CatalogApi.get_country_services",
@@ -254,7 +254,7 @@ module MassPayRubySdk
     end
 
     # Returns list of alternative service to a provided service
-    # Gets a list of all the available services and pricing for each respected company for a provided country code.
+    # This **GET** endpoint is used to retrieve a list of alternative services to a provided service. <br> You can use this endpoint to obtain information about other available services and pricing offered by different companies for a particular destination. <br> To use this endpoint, you need to provide the `destination_token` as a required parameter in the URL Path. <br> The response will include a JSON array containing details for each company, including the company name, available alternative services, and pricing.
     # @param destination_token [String] Destination token
     # @param [Hash] opts the optional parameters
     # @option opts [String] :idempotency_key Unique key to prevent duplicate processing
@@ -265,7 +265,7 @@ module MassPayRubySdk
     end
 
     # Returns list of alternative service to a provided service
-    # Gets a list of all the available services and pricing for each respected company for a provided country code.
+    # This **GET** endpoint is used to retrieve a list of alternative services to a provided service. &lt;br&gt; You can use this endpoint to obtain information about other available services and pricing offered by different companies for a particular destination. &lt;br&gt; To use this endpoint, you need to provide the &#x60;destination_token&#x60; as a required parameter in the URL Path. &lt;br&gt; The response will include a JSON array containing details for each company, including the company name, available alternative services, and pricing.
     # @param destination_token [String] Destination token
     # @param [Hash] opts the optional parameters
     # @option opts [String] :idempotency_key Unique key to prevent duplicate processing
@@ -300,7 +300,7 @@ module MassPayRubySdk
       return_type = opts[:debug_return_type] || 'Service'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['api_key', 'AUTHORIZER_NAME']
+      auth_names = opts[:debug_auth_names] || ['AUTHORIZER_NAME']
 
       new_options = opts.merge(
         :operation => :"CatalogApi.get_destination_token_alternatives",
@@ -320,7 +320,7 @@ module MassPayRubySdk
     end
 
     # Get User Agreement
-    # Get available user agreements for payout services
+    # This **GET** endpoint is used to retrieve the user agreement for payout services. <br> You can use this endpoint to obtain information about the available user agreements for payout services offered by MassPay. <br> To use this endpoint, you need to provide the `ID` representing the user agreement as a required parameter in the URL Path. <br> The response will include the user agreement details.
     # @param id [Integer] Id representing user agreement (retrieved from OPTIONS call)
     # @param [Hash] opts the optional parameters
     # @return [GetUserAgreement200Response]
@@ -330,7 +330,7 @@ module MassPayRubySdk
     end
 
     # Get User Agreement
-    # Get available user agreements for payout services
+    # This **GET** endpoint is used to retrieve the user agreement for payout services. &lt;br&gt; You can use this endpoint to obtain information about the available user agreements for payout services offered by MassPay. &lt;br&gt; To use this endpoint, you need to provide the &#x60;ID&#x60; representing the user agreement as a required parameter in the URL Path. &lt;br&gt; The response will include the user agreement details.
     # @param id [Integer] Id representing user agreement (retrieved from OPTIONS call)
     # @param [Hash] opts the optional parameters
     # @return [Array<(GetUserAgreement200Response, Integer, Hash)>] GetUserAgreement200Response data, response status code and response headers
@@ -364,7 +364,7 @@ module MassPayRubySdk
       return_type = opts[:debug_return_type] || 'GetUserAgreement200Response'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['api_key', 'AUTHORIZER_NAME']
+      auth_names = opts[:debug_auth_names] || ['AUTHORIZER_NAME']
 
       new_options = opts.merge(
         :operation => :"CatalogApi.get_user_agreement",
@@ -384,7 +384,7 @@ module MassPayRubySdk
     end
 
     # Get Available User Agreements
-    # Get available user agreements for payout services (without content)
+    # This OPTIONS endpoint is used to retrieve a list of available user agreements for payout services offered by MassPay without the content. <br> You can use this endpoint to obtain the names of available user agreements. <br> There are no required parameters needed to use this endpoint. <br> The response will include a list of user agreement names
     # @param [Hash] opts the optional parameters
     # @return [Array<GetUserAgreementsNames200ResponseInner>]
     def get_user_agreements_names(opts = {})
@@ -393,7 +393,7 @@ module MassPayRubySdk
     end
 
     # Get Available User Agreements
-    # Get available user agreements for payout services (without content)
+    # This OPTIONS endpoint is used to retrieve a list of available user agreements for payout services offered by MassPay without the content. &lt;br&gt; You can use this endpoint to obtain the names of available user agreements. &lt;br&gt; There are no required parameters needed to use this endpoint. &lt;br&gt; The response will include a list of user agreement names
     # @param [Hash] opts the optional parameters
     # @return [Array<(Array<GetUserAgreementsNames200ResponseInner>, Integer, Hash)>] Array<GetUserAgreementsNames200ResponseInner> data, response status code and response headers
     def get_user_agreements_names_with_http_info(opts = {})
@@ -421,7 +421,7 @@ module MassPayRubySdk
       return_type = opts[:debug_return_type] || 'Array<GetUserAgreementsNames200ResponseInner>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['api_key', 'AUTHORIZER_NAME']
+      auth_names = opts[:debug_auth_names] || ['AUTHORIZER_NAME']
 
       new_options = opts.merge(
         :operation => :"CatalogApi.get_user_agreements_names",

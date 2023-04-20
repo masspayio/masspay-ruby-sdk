@@ -13,6 +13,7 @@
 | **expected_value** | **String** | Written explanation of the value that the regex validation requires | [optional] |
 | **type** | **String** | The type of attribute | [optional] |
 | **input_type** | **String** | The type of input field that is suggested for this this attribute | [default to &#39;text&#39;] |
+| **last_attr_value_used** | **Boolean** | If set to true, it means this was the last value that was used and if no attr_set_token is provided to init payout, this value will be used by default | [optional] |
 
 ## Example
 
@@ -28,7 +29,8 @@ instance = MassPayRubySdk::AttrsRequirement.new(
   value: 432532532,
   expected_value: Date format MM/DD/YYYY,
   type: BankAccountNumber,
-  input_type: text
+  input_type: text,
+  last_attr_value_used: null
 )
 ```
 

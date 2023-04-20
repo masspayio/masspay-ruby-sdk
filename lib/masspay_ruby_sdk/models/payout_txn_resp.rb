@@ -63,6 +63,7 @@ module MassPayRubySdk
     # Name of payer
     attr_accessor :payer_name
 
+    # The type of delivery
     attr_accessor :delivery_type
 
     # Country code [ISO_3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3)
@@ -73,6 +74,12 @@ module MassPayRubySdk
 
     # Estimated availability of funds. When funds would be available to pickup/deposited
     attr_accessor :estimated_availability
+
+    # Optional. Contains the reason for the status change. Most commonly used for CANCELLED status with the reason for cancellation
+    attr_accessor :status_reason
+
+    # The relevant attributes that were used to fulfill this payout
+    attr_accessor :attrs
 
     class EnumAttributeValidator
       attr_reader :datatype
@@ -118,7 +125,9 @@ module MassPayRubySdk
         :'delivery_type' => :'delivery_type',
         :'country_code' => :'country_code',
         :'metadata' => :'metadata',
-        :'estimated_availability' => :'estimated_availability'
+        :'estimated_availability' => :'estimated_availability',
+        :'status_reason' => :'status_reason',
+        :'attrs' => :'attrs'
       }
     end
 
@@ -149,7 +158,9 @@ module MassPayRubySdk
         :'delivery_type' => :'String',
         :'country_code' => :'String',
         :'metadata' => :'Object',
-        :'estimated_availability' => :'Time'
+        :'estimated_availability' => :'Time',
+        :'status_reason' => :'String',
+        :'attrs' => :'Object'
       }
     end
 
@@ -253,6 +264,14 @@ module MassPayRubySdk
       if attributes.key?(:'estimated_availability')
         self.estimated_availability = attributes[:'estimated_availability']
       end
+
+      if attributes.key?(:'status_reason')
+        self.status_reason = attributes[:'status_reason']
+      end
+
+      if attributes.key?(:'attrs')
+        self.attrs = attributes[:'attrs']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -319,11 +338,23 @@ module MassPayRubySdk
         invalid_properties.push('invalid value for "status", status cannot be nil.')
       end
 
-      if !@country_code.nil? && @country_code.to_s.length > 3
+      if @payer_name.nil?
+        invalid_properties.push('invalid value for "payer_name", payer_name cannot be nil.')
+      end
+
+      if @delivery_type.nil?
+        invalid_properties.push('invalid value for "delivery_type", delivery_type cannot be nil.')
+      end
+
+      if @country_code.nil?
+        invalid_properties.push('invalid value for "country_code", country_code cannot be nil.')
+      end
+
+      if @country_code.to_s.length > 3
         invalid_properties.push('invalid value for "country_code", the character length must be smaller than or equal to 3.')
       end
 
-      if !@country_code.nil? && @country_code.to_s.length < 3
+      if @country_code.to_s.length < 3
         invalid_properties.push('invalid value for "country_code", the character length must be great than or equal to 3.')
       end
 
@@ -354,10 +385,13 @@ module MassPayRubySdk
       return false if @status.nil?
       status_validator = EnumAttributeValidator.new('String', ["PENDING", "PROCESSING", "COMPLETED", "CANCELLED", "SCHEDULED", "READY_FOR_PICKUP", "HOLD", "ERROR"])
       return false unless status_validator.valid?(@status)
+      return false if @payer_name.nil?
+      return false if @delivery_type.nil?
       delivery_type_validator = EnumAttributeValidator.new('String', ["CASH_PICKUP", "BANK_DEPOSIT", "HOME_DELIVERY", "MOBILE_WALLET", "MASSPAY_CARD", "PAPER_CHECK", "BILL", "CRYPTOCURRENCY"])
       return false unless delivery_type_validator.valid?(@delivery_type)
-      return false if !@country_code.nil? && @country_code.to_s.length > 3
-      return false if !@country_code.nil? && @country_code.to_s.length < 3
+      return false if @country_code.nil?
+      return false if @country_code.to_s.length > 3
+      return false if @country_code.to_s.length < 3
       return false if @estimated_availability.nil?
       true
     end
@@ -399,11 +433,15 @@ module MassPayRubySdk
     # Custom attribute writer method with validation
     # @param [Object] country_code Value to be assigned
     def country_code=(country_code)
-      if !country_code.nil? && country_code.to_s.length > 3
+      if country_code.nil?
+        fail ArgumentError, 'country_code cannot be nil'
+      end
+
+      if country_code.to_s.length > 3
         fail ArgumentError, 'invalid value for "country_code", the character length must be smaller than or equal to 3.'
       end
 
-      if !country_code.nil? && country_code.to_s.length < 3
+      if country_code.to_s.length < 3
         fail ArgumentError, 'invalid value for "country_code", the character length must be great than or equal to 3.'
       end
 
@@ -434,7 +472,9 @@ module MassPayRubySdk
           delivery_type == o.delivery_type &&
           country_code == o.country_code &&
           metadata == o.metadata &&
-          estimated_availability == o.estimated_availability
+          estimated_availability == o.estimated_availability &&
+          status_reason == o.status_reason &&
+          attrs == o.attrs
     end
 
     # @see the `==` method
@@ -446,7 +486,7 @@ module MassPayRubySdk
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [payout_token, client_transfer_id, source_currency_code, destination_currency_code, source_token, destination_token, destination_amount, source_amount, attr_set_token, exchange_rate, fee, expiration, pickup_code, status, payer_logo, payer_name, delivery_type, country_code, metadata, estimated_availability].hash
+      [payout_token, client_transfer_id, source_currency_code, destination_currency_code, source_token, destination_token, destination_amount, source_amount, attr_set_token, exchange_rate, fee, expiration, pickup_code, status, payer_logo, payer_name, delivery_type, country_code, metadata, estimated_availability, status_reason, attrs].hash
     end
 
     # Builds the object from hash

@@ -19,7 +19,7 @@ module MassPayRubySdk
       @api_client = api_client
     end
     # Get current available balance
-    # Retrieves the current available balances.
+    # This **GET** endpoint is used to retrieve the current available balance for the MassPay account. <br> You can use this endpoint to obtain information about the current balance in your account. <br> There are no required parameters needed to access this endpoint. <br> The response will include a JSON objects containing details for the current available balance, including the token, balance and `currency_code`.
     # @param [Hash] opts the optional parameters
     # @return [Array<AvailableBalanceTxnResp>]
     def get_account_balance(opts = {})
@@ -28,7 +28,7 @@ module MassPayRubySdk
     end
 
     # Get current available balance
-    # Retrieves the current available balances.
+    # This **GET** endpoint is used to retrieve the current available balance for the MassPay account. &lt;br&gt; You can use this endpoint to obtain information about the current balance in your account. &lt;br&gt; There are no required parameters needed to access this endpoint. &lt;br&gt; The response will include a JSON objects containing details for the current available balance, including the token, balance and &#x60;currency_code&#x60;.
     # @param [Hash] opts the optional parameters
     # @return [Array<(Array<AvailableBalanceTxnResp>, Integer, Hash)>] Array<AvailableBalanceTxnResp> data, response status code and response headers
     def get_account_balance_with_http_info(opts = {})
@@ -56,7 +56,7 @@ module MassPayRubySdk
       return_type = opts[:debug_return_type] || 'Array<AvailableBalanceTxnResp>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['api_key', 'AUTHORIZER_NAME']
+      auth_names = opts[:debug_auth_names] || ['AUTHORIZER_NAME']
 
       new_options = opts.merge(
         :operation => :"AccountApi.get_account_balance",
@@ -76,7 +76,7 @@ module MassPayRubySdk
     end
 
     # Get certified account statement
-    # Retreived a certified PDF ledger statement for a provided timeframe
+    # This **GET** endpoint is used to retrieve a certified PDF ledger statement for a provided timeframe. <br> You can use this endpoint to obtain a ledger statement for your MassPay account for a specific time period. <br> To use this endpoint, you need to provide the `start_date` and `ending_date` as required parameters in the Query string of the URL. <br> The response will include a certified PDF ledger statement containing transaction details for the specified timeframe.
     # @param start_date [Date] Starting date of the statement
     # @param ending_date [Date] Ending date of the statement (not more than 31 days than &#x60;start_date&#x60;)
     # @param [Hash] opts the optional parameters
@@ -87,7 +87,7 @@ module MassPayRubySdk
     end
 
     # Get certified account statement
-    # Retreived a certified PDF ledger statement for a provided timeframe
+    # This **GET** endpoint is used to retrieve a certified PDF ledger statement for a provided timeframe. &lt;br&gt; You can use this endpoint to obtain a ledger statement for your MassPay account for a specific time period. &lt;br&gt; To use this endpoint, you need to provide the &#x60;start_date&#x60; and &#x60;ending_date&#x60; as required parameters in the Query string of the URL. &lt;br&gt; The response will include a certified PDF ledger statement containing transaction details for the specified timeframe.
     # @param start_date [Date] Starting date of the statement
     # @param ending_date [Date] Ending date of the statement (not more than 31 days than &#x60;start_date&#x60;)
     # @param [Hash] opts the optional parameters
@@ -127,7 +127,7 @@ module MassPayRubySdk
       return_type = opts[:debug_return_type] || 'GetAccountStatement200Response'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['api_key', 'AUTHORIZER_NAME']
+      auth_names = opts[:debug_auth_names] || ['AUTHORIZER_NAME']
 
       new_options = opts.merge(
         :operation => :"AccountApi.get_account_statement",

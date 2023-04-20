@@ -19,7 +19,7 @@ module MassPayRubySdk
       @api_client = api_client
     end
     # Reverse a user load
-    # Reverse a load that was already processed. If the load is still in scheduled status, it will mark it as cancelled
+    # This **DELETE** endpoint is used to reverse a load transaction that was already processed, allowing you to remove funds from a user's wallet. <br> To use this endpoint, you need to provide the `user_token` as a parameter in the URL Path, and the load_token as a parameter in the Query string. <br> The endpoint will then attempt to reverse the specified load transaction. If the load is still in scheduled status, it will be marked as cancelled.
     # @param user_token [String] Token representing the user to load/fetch loads for
     # @param load_token [String] Load token
     # @param [Hash] opts the optional parameters
@@ -31,7 +31,7 @@ module MassPayRubySdk
     end
 
     # Reverse a user load
-    # Reverse a load that was already processed. If the load is still in scheduled status, it will mark it as cancelled
+    # This **DELETE** endpoint is used to reverse a load transaction that was already processed, allowing you to remove funds from a user&#39;s wallet. &lt;br&gt; To use this endpoint, you need to provide the &#x60;user_token&#x60; as a parameter in the URL Path, and the load_token as a parameter in the Query string. &lt;br&gt; The endpoint will then attempt to reverse the specified load transaction. If the load is still in scheduled status, it will be marked as cancelled.
     # @param user_token [String] Token representing the user to load/fetch loads for
     # @param load_token [String] Load token
     # @param [Hash] opts the optional parameters
@@ -70,7 +70,7 @@ module MassPayRubySdk
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['api_key', 'AUTHORIZER_NAME']
+      auth_names = opts[:debug_auth_names] || ['AUTHORIZER_NAME']
 
       new_options = opts.merge(
         :operation => :"LoadApi.cancel_user_load",
@@ -90,7 +90,7 @@ module MassPayRubySdk
     end
 
     # Add autopay rule
-    # Create an autopay rule that will automatically initiate a payout whenever the `wallet_token` is loaded
+    # This **POST** endpoint is used to add an autopay rule that will initiate a payout whenever the provided wallet token is loaded. <br> You can use this endpoint to create an autopay rule that automatically sends a percentage of incoming load to a specific destination. <br> To use this endpoint, you need to provide the `user_token` and `wallet_token` as required parameters in the URL Path, and the `destination_token` and percentage of incoming load that should be autopaid to the `destination_token` in the request Body. <br> The response will include a JSON object containing the details of the created autopay rule, including the token, `destination_token` and percentage.
     # @param user_token [String] Token representing the user who owns the wallet
     # @param wallet_token [String] Token representing the wallet
     # @param [Hash] opts the optional parameters
@@ -102,7 +102,7 @@ module MassPayRubySdk
     end
 
     # Add autopay rule
-    # Create an autopay rule that will automatically initiate a payout whenever the &#x60;wallet_token&#x60; is loaded
+    # This **POST** endpoint is used to add an autopay rule that will initiate a payout whenever the provided wallet token is loaded. &lt;br&gt; You can use this endpoint to create an autopay rule that automatically sends a percentage of incoming load to a specific destination. &lt;br&gt; To use this endpoint, you need to provide the &#x60;user_token&#x60; and &#x60;wallet_token&#x60; as required parameters in the URL Path, and the &#x60;destination_token&#x60; and percentage of incoming load that should be autopaid to the &#x60;destination_token&#x60; in the request Body. &lt;br&gt; The response will include a JSON object containing the details of the created autopay rule, including the token, &#x60;destination_token&#x60; and percentage.
     # @param user_token [String] Token representing the user who owns the wallet
     # @param wallet_token [String] Token representing the wallet
     # @param [Hash] opts the optional parameters
@@ -146,7 +146,7 @@ module MassPayRubySdk
       return_type = opts[:debug_return_type] || 'AutopayResp'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['api_key', 'AUTHORIZER_NAME']
+      auth_names = opts[:debug_auth_names] || ['AUTHORIZER_NAME']
 
       new_options = opts.merge(
         :operation => :"LoadApi.create_autopay_rule",
@@ -166,7 +166,7 @@ module MassPayRubySdk
     end
 
     # Delete autopay rule
-    # Deletes an autopay rule
+    # This **DELETE** endpoint is used to delete an existing autopay rule. <br> You can use this endpoint to remove an autopay rule that is no longer needed. <br> To use this endpoint, you need to provide the `user_token` and `wallet_token` as required parameters in the URL Path, and the token of the autopay rule you wish to delete in the request Body. <br> The response will include a message indicating the success of the deletion.
     # @param user_token [String] Token representing the user who owns the wallet
     # @param wallet_token [String] Token representing the wallet
     # @param token [String] Autopay token to delete
@@ -178,7 +178,7 @@ module MassPayRubySdk
     end
 
     # Delete autopay rule
-    # Deletes an autopay rule
+    # This **DELETE** endpoint is used to delete an existing autopay rule. &lt;br&gt; You can use this endpoint to remove an autopay rule that is no longer needed. &lt;br&gt; To use this endpoint, you need to provide the &#x60;user_token&#x60; and &#x60;wallet_token&#x60; as required parameters in the URL Path, and the token of the autopay rule you wish to delete in the request Body. &lt;br&gt; The response will include a message indicating the success of the deletion.
     # @param user_token [String] Token representing the user who owns the wallet
     # @param wallet_token [String] Token representing the wallet
     # @param token [String] Autopay token to delete
@@ -222,7 +222,7 @@ module MassPayRubySdk
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['api_key', 'AUTHORIZER_NAME']
+      auth_names = opts[:debug_auth_names] || ['AUTHORIZER_NAME']
 
       new_options = opts.merge(
         :operation => :"LoadApi.delete_autopay_rule",
@@ -242,7 +242,7 @@ module MassPayRubySdk
     end
 
     # Get all autopay rules
-    # Obtain list of all autopay rules currently applied to this wallet
+    # This **GET** endpoint is used to retrieve all autopay rules currently applied to the provided wallet token. <br> You can use this endpoint to obtain information about the autopay rules associated with the wallet. <br> To use this endpoint, you need to provide the `user_token` and `wallet_token` as required parameters in the URL Path. <br> The response will include a JSON array containing details for each autopay rule, including the token, `destination_token` and percentage.
     # @param user_token [String] Token representing the user who owns the wallet
     # @param wallet_token [String] Token representing the wallet
     # @param [Hash] opts the optional parameters
@@ -253,7 +253,7 @@ module MassPayRubySdk
     end
 
     # Get all autopay rules
-    # Obtain list of all autopay rules currently applied to this wallet
+    # This **GET** endpoint is used to retrieve all autopay rules currently applied to the provided wallet token. &lt;br&gt; You can use this endpoint to obtain information about the autopay rules associated with the wallet. &lt;br&gt; To use this endpoint, you need to provide the &#x60;user_token&#x60; and &#x60;wallet_token&#x60; as required parameters in the URL Path. &lt;br&gt; The response will include a JSON array containing details for each autopay rule, including the token, &#x60;destination_token&#x60; and percentage.
     # @param user_token [String] Token representing the user who owns the wallet
     # @param wallet_token [String] Token representing the wallet
     # @param [Hash] opts the optional parameters
@@ -291,7 +291,7 @@ module MassPayRubySdk
       return_type = opts[:debug_return_type] || 'Array<AutopayResp>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['api_key', 'AUTHORIZER_NAME']
+      auth_names = opts[:debug_auth_names] || ['AUTHORIZER_NAME']
 
       new_options = opts.merge(
         :operation => :"LoadApi.get_autopay_rules",
@@ -311,7 +311,7 @@ module MassPayRubySdk
     end
 
     # Get history of loads by user token
-    # Gets a transaction history of all loads that were made to the provided user token, including scheduled loads.
+    # This **GET** endpoint is used to retrieve a transaction history of all loads that were made to the provided user token, including scheduled loads. <br> You can use this endpoint to obtain a comprehensive history of loads for the user token, allowing you to track and analyze their incoming payments over time. <br> To use this endpoint, you need to provide the `user_token` as a parameter in the URL Path. <br> The endpoint will then return a JSON array of load transactions, each including transactions details.
     # @param user_token [String] The user token that needs to be fetched.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :idempotency_key Unique key to prevent duplicate processing
@@ -322,7 +322,7 @@ module MassPayRubySdk
     end
 
     # Get history of loads by user token
-    # Gets a transaction history of all loads that were made to the provided user token, including scheduled loads.
+    # This **GET** endpoint is used to retrieve a transaction history of all loads that were made to the provided user token, including scheduled loads. &lt;br&gt; You can use this endpoint to obtain a comprehensive history of loads for the user token, allowing you to track and analyze their incoming payments over time. &lt;br&gt; To use this endpoint, you need to provide the &#x60;user_token&#x60; as a parameter in the URL Path. &lt;br&gt; The endpoint will then return a JSON array of load transactions, each including transactions details.
     # @param user_token [String] The user token that needs to be fetched.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :idempotency_key Unique key to prevent duplicate processing
@@ -357,7 +357,7 @@ module MassPayRubySdk
       return_type = opts[:debug_return_type] || 'Array<Loads>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['api_key', 'AUTHORIZER_NAME']
+      auth_names = opts[:debug_auth_names] || ['AUTHORIZER_NAME']
 
       new_options = opts.merge(
         :operation => :"LoadApi.get_user_loads_by_token",
@@ -377,7 +377,7 @@ module MassPayRubySdk
     end
 
     # Initiate a load transaction
-    # Initiates a load of funds into a user token's wallet.
+    # This **POST** endpoint is used to initiate a load transaction, allowing you to add funds to a user token's wallet. <br> To use this endpoint, you need to provide the `user_token` as a parameter in the URL Path. You also need to provide the `client_load_id`, `source_token`, and amount as JSON parameters in the Request Body. The `client_load_id` is a unique identifier for the transaction that you can use to track it, while the `source_token` is the token or account from which the funds will be loaded. The amount parameter specifies the amount of funds to be loaded into the user's wallet. <br> The response will contain a JSON object indicating the status of the load transaction and any relevant details.
     # @param user_token [String] Token representing the user to load
     # @param load_txn [LoadTxn] Load information
     # @param [Hash] opts the optional parameters
@@ -389,7 +389,7 @@ module MassPayRubySdk
     end
 
     # Initiate a load transaction
-    # Initiates a load of funds into a user token&#39;s wallet.
+    # This **POST** endpoint is used to initiate a load transaction, allowing you to add funds to a user token&#39;s wallet. &lt;br&gt; To use this endpoint, you need to provide the &#x60;user_token&#x60; as a parameter in the URL Path. You also need to provide the &#x60;client_load_id&#x60;, &#x60;source_token&#x60;, and amount as JSON parameters in the Request Body. The &#x60;client_load_id&#x60; is a unique identifier for the transaction that you can use to track it, while the &#x60;source_token&#x60; is the token or account from which the funds will be loaded. The amount parameter specifies the amount of funds to be loaded into the user&#39;s wallet. &lt;br&gt; The response will contain a JSON object indicating the status of the load transaction and any relevant details.
     # @param user_token [String] Token representing the user to load
     # @param load_txn [LoadTxn] Load information
     # @param [Hash] opts the optional parameters
@@ -434,7 +434,7 @@ module MassPayRubySdk
       return_type = opts[:debug_return_type] || 'LoadTxnResp'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['api_key', 'AUTHORIZER_NAME']
+      auth_names = opts[:debug_auth_names] || ['AUTHORIZER_NAME']
 
       new_options = opts.merge(
         :operation => :"LoadApi.load_user",
@@ -454,35 +454,35 @@ module MassPayRubySdk
     end
 
     # Resend Load Notification
-    # 
+    # This **PUT** endpoint is used to resend a load notification to the user associated with the provided `user_token` for a specific load transaction. <br> You can use this endpoint to help ensure that users are notified promptly and accurately of any incoming funds or other important payment events. <br> To use this endpoint, you need to provide the `user_token` as a parameter in the URL Path, and the `load_token` as a parameter in the Query string. The endpoint will then resend a notification to the user for the specified load transaction. <br> The response will contain a JSON object indicating the status of the request.
     # @param user_token [String] Token representing the user to load/fetch loads for
     # @param load_token [String] Load token
     # @param [Hash] opts the optional parameters
     # @option opts [String] :idempotency_key Unique key to prevent duplicate processing
-    # @return [ResendLoadNotification200Response]
-    def resend_load_notification(user_token, load_token, opts = {})
-      data, _status_code, _headers = resend_load_notification_with_http_info(user_token, load_token, opts)
+    # @return [ResendBalanceNotification200Response]
+    def load_user_token_put(user_token, load_token, opts = {})
+      data, _status_code, _headers = load_user_token_put_with_http_info(user_token, load_token, opts)
       data
     end
 
     # Resend Load Notification
-    # 
+    # This **PUT** endpoint is used to resend a load notification to the user associated with the provided &#x60;user_token&#x60; for a specific load transaction. &lt;br&gt; You can use this endpoint to help ensure that users are notified promptly and accurately of any incoming funds or other important payment events. &lt;br&gt; To use this endpoint, you need to provide the &#x60;user_token&#x60; as a parameter in the URL Path, and the &#x60;load_token&#x60; as a parameter in the Query string. The endpoint will then resend a notification to the user for the specified load transaction. &lt;br&gt; The response will contain a JSON object indicating the status of the request.
     # @param user_token [String] Token representing the user to load/fetch loads for
     # @param load_token [String] Load token
     # @param [Hash] opts the optional parameters
     # @option opts [String] :idempotency_key Unique key to prevent duplicate processing
-    # @return [Array<(ResendLoadNotification200Response, Integer, Hash)>] ResendLoadNotification200Response data, response status code and response headers
-    def resend_load_notification_with_http_info(user_token, load_token, opts = {})
+    # @return [Array<(ResendBalanceNotification200Response, Integer, Hash)>] ResendBalanceNotification200Response data, response status code and response headers
+    def load_user_token_put_with_http_info(user_token, load_token, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: LoadApi.resend_load_notification ...'
+        @api_client.config.logger.debug 'Calling API: LoadApi.load_user_token_put ...'
       end
       # verify the required parameter 'user_token' is set
       if @api_client.config.client_side_validation && user_token.nil?
-        fail ArgumentError, "Missing the required parameter 'user_token' when calling LoadApi.resend_load_notification"
+        fail ArgumentError, "Missing the required parameter 'user_token' when calling LoadApi.load_user_token_put"
       end
       # verify the required parameter 'load_token' is set
       if @api_client.config.client_side_validation && load_token.nil?
-        fail ArgumentError, "Missing the required parameter 'load_token' when calling LoadApi.resend_load_notification"
+        fail ArgumentError, "Missing the required parameter 'load_token' when calling LoadApi.load_user_token_put"
       end
       # resource path
       local_var_path = '/load/{user_token}'.sub('{' + 'user_token' + '}', CGI.escape(user_token.to_s))
@@ -504,13 +504,13 @@ module MassPayRubySdk
       post_body = opts[:debug_body]
 
       # return_type
-      return_type = opts[:debug_return_type] || 'ResendLoadNotification200Response'
+      return_type = opts[:debug_return_type] || 'ResendBalanceNotification200Response'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['api_key', 'AUTHORIZER_NAME']
+      auth_names = opts[:debug_auth_names] || ['AUTHORIZER_NAME']
 
       new_options = opts.merge(
-        :operation => :"LoadApi.resend_load_notification",
+        :operation => :"LoadApi.load_user_token_put",
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -521,7 +521,76 @@ module MassPayRubySdk
 
       data, status_code, headers = @api_client.call_api(:PUT, local_var_path, new_options)
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: LoadApi#resend_load_notification\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: LoadApi#load_user_token_put\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+      end
+      return data, status_code, headers
+    end
+
+    # Resend Balance Notification
+    # 
+    # @param user_token [String] Token representing the user who owns the wallet
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :idempotency_key Unique key to prevent duplicate processing
+    # @option opts [String] :wallet_token Optional wallet token. If none is provided, select the first wallet available
+    # @return [ResendBalanceNotification200Response]
+    def resend_balance_notification(user_token, opts = {})
+      data, _status_code, _headers = resend_balance_notification_with_http_info(user_token, opts)
+      data
+    end
+
+    # Resend Balance Notification
+    # 
+    # @param user_token [String] Token representing the user who owns the wallet
+    # @param [Hash] opts the optional parameters
+    # @option opts [String] :idempotency_key Unique key to prevent duplicate processing
+    # @option opts [String] :wallet_token Optional wallet token. If none is provided, select the first wallet available
+    # @return [Array<(ResendBalanceNotification200Response, Integer, Hash)>] ResendBalanceNotification200Response data, response status code and response headers
+    def resend_balance_notification_with_http_info(user_token, opts = {})
+      if @api_client.config.debugging
+        @api_client.config.logger.debug 'Calling API: LoadApi.resend_balance_notification ...'
+      end
+      # verify the required parameter 'user_token' is set
+      if @api_client.config.client_side_validation && user_token.nil?
+        fail ArgumentError, "Missing the required parameter 'user_token' when calling LoadApi.resend_balance_notification"
+      end
+      # resource path
+      local_var_path = '/wallet/{user_token}'.sub('{' + 'user_token' + '}', CGI.escape(user_token.to_s))
+
+      # query parameters
+      query_params = opts[:query_params] || {}
+      query_params[:'wallet_token'] = opts[:'wallet_token'] if !opts[:'wallet_token'].nil?
+
+      # header parameters
+      header_params = opts[:header_params] || {}
+      # HTTP header 'Accept' (if needed)
+      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
+      header_params[:'Idempotency-Key'] = opts[:'idempotency_key'] if !opts[:'idempotency_key'].nil?
+
+      # form parameters
+      form_params = opts[:form_params] || {}
+
+      # http body (model)
+      post_body = opts[:debug_body]
+
+      # return_type
+      return_type = opts[:debug_return_type] || 'ResendBalanceNotification200Response'
+
+      # auth_names
+      auth_names = opts[:debug_auth_names] || ['AUTHORIZER_NAME']
+
+      new_options = opts.merge(
+        :operation => :"LoadApi.resend_balance_notification",
+        :header_params => header_params,
+        :query_params => query_params,
+        :form_params => form_params,
+        :body => post_body,
+        :auth_names => auth_names,
+        :return_type => return_type
+      )
+
+      data, status_code, headers = @api_client.call_api(:PUT, local_var_path, new_options)
+      if @api_client.config.debugging
+        @api_client.config.logger.debug "API called: LoadApi#resend_balance_notification\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end

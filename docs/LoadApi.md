@@ -10,7 +10,8 @@ All URIs are relative to *https://api.masspay.io/v0.1.4*
 | [**get_autopay_rules**](LoadApi.md#get_autopay_rules) | **GET** /wallet/{user_token}/{wallet_token}/autopay | Get all autopay rules |
 | [**get_user_loads_by_token**](LoadApi.md#get_user_loads_by_token) | **GET** /load/{user_token} | Get history of loads by user token |
 | [**load_user**](LoadApi.md#load_user) | **POST** /load/{user_token} | Initiate a load transaction |
-| [**resend_load_notification**](LoadApi.md#resend_load_notification) | **PUT** /load/{user_token} | Resend Load Notification |
+| [**load_user_token_put**](LoadApi.md#load_user_token_put) | **PUT** /load/{user_token} | Resend Load Notification |
+| [**resend_balance_notification**](LoadApi.md#resend_balance_notification) | **PUT** /wallet/{user_token} | Resend Balance Notification |
 
 
 ## cancel_user_load
@@ -19,7 +20,7 @@ All URIs are relative to *https://api.masspay.io/v0.1.4*
 
 Reverse a user load
 
-Reverse a load that was already processed. If the load is still in scheduled status, it will mark it as cancelled
+This **DELETE** endpoint is used to reverse a load transaction that was already processed, allowing you to remove funds from a user's wallet. <br> To use this endpoint, you need to provide the `user_token` as a parameter in the URL Path, and the load_token as a parameter in the Query string. <br> The endpoint will then attempt to reverse the specified load transaction. If the load is still in scheduled status, it will be marked as cancelled.
 
 ### Examples
 
@@ -28,13 +29,10 @@ require 'time'
 require 'masspay_ruby_sdk'
 # setup authorization
 MassPayRubySdk.configure do |config|
-  # Configure API key authorization: api_key
-  config.api_key['api_key'] = 'YOUR API KEY'
+  # Configure API key authorization: AUTHORIZER_NAME
+  config.api_key['AUTHORIZER_NAME'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  # config.api_key_prefix['api_key'] = 'Bearer'
-
-  # Configure Bearer authorization: AUTHORIZER_NAME
-  config.access_token = 'YOUR_BEARER_TOKEN'
+  # config.api_key_prefix['AUTHORIZER_NAME'] = 'Bearer'
 end
 
 api_instance = MassPayRubySdk::LoadApi.new
@@ -84,7 +82,7 @@ nil (empty response body)
 
 ### Authorization
 
-[api_key](../README.md#api_key), [AUTHORIZER_NAME](../README.md#AUTHORIZER_NAME)
+[AUTHORIZER_NAME](../README.md#AUTHORIZER_NAME)
 
 ### HTTP request headers
 
@@ -98,7 +96,7 @@ nil (empty response body)
 
 Add autopay rule
 
-Create an autopay rule that will automatically initiate a payout whenever the `wallet_token` is loaded
+This **POST** endpoint is used to add an autopay rule that will initiate a payout whenever the provided wallet token is loaded. <br> You can use this endpoint to create an autopay rule that automatically sends a percentage of incoming load to a specific destination. <br> To use this endpoint, you need to provide the `user_token` and `wallet_token` as required parameters in the URL Path, and the `destination_token` and percentage of incoming load that should be autopaid to the `destination_token` in the request Body. <br> The response will include a JSON object containing the details of the created autopay rule, including the token, `destination_token` and percentage.
 
 ### Examples
 
@@ -107,13 +105,10 @@ require 'time'
 require 'masspay_ruby_sdk'
 # setup authorization
 MassPayRubySdk.configure do |config|
-  # Configure API key authorization: api_key
-  config.api_key['api_key'] = 'YOUR API KEY'
+  # Configure API key authorization: AUTHORIZER_NAME
+  config.api_key['AUTHORIZER_NAME'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  # config.api_key_prefix['api_key'] = 'Bearer'
-
-  # Configure Bearer authorization: AUTHORIZER_NAME
-  config.access_token = 'YOUR_BEARER_TOKEN'
+  # config.api_key_prefix['AUTHORIZER_NAME'] = 'Bearer'
 end
 
 api_instance = MassPayRubySdk::LoadApi.new
@@ -164,7 +159,7 @@ end
 
 ### Authorization
 
-[api_key](../README.md#api_key), [AUTHORIZER_NAME](../README.md#AUTHORIZER_NAME)
+[AUTHORIZER_NAME](../README.md#AUTHORIZER_NAME)
 
 ### HTTP request headers
 
@@ -178,7 +173,7 @@ end
 
 Delete autopay rule
 
-Deletes an autopay rule
+This **DELETE** endpoint is used to delete an existing autopay rule. <br> You can use this endpoint to remove an autopay rule that is no longer needed. <br> To use this endpoint, you need to provide the `user_token` and `wallet_token` as required parameters in the URL Path, and the token of the autopay rule you wish to delete in the request Body. <br> The response will include a message indicating the success of the deletion.
 
 ### Examples
 
@@ -187,13 +182,10 @@ require 'time'
 require 'masspay_ruby_sdk'
 # setup authorization
 MassPayRubySdk.configure do |config|
-  # Configure API key authorization: api_key
-  config.api_key['api_key'] = 'YOUR API KEY'
+  # Configure API key authorization: AUTHORIZER_NAME
+  config.api_key['AUTHORIZER_NAME'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  # config.api_key_prefix['api_key'] = 'Bearer'
-
-  # Configure Bearer authorization: AUTHORIZER_NAME
-  config.access_token = 'YOUR_BEARER_TOKEN'
+  # config.api_key_prefix['AUTHORIZER_NAME'] = 'Bearer'
 end
 
 api_instance = MassPayRubySdk::LoadApi.new
@@ -241,7 +233,7 @@ nil (empty response body)
 
 ### Authorization
 
-[api_key](../README.md#api_key), [AUTHORIZER_NAME](../README.md#AUTHORIZER_NAME)
+[AUTHORIZER_NAME](../README.md#AUTHORIZER_NAME)
 
 ### HTTP request headers
 
@@ -255,7 +247,7 @@ nil (empty response body)
 
 Get all autopay rules
 
-Obtain list of all autopay rules currently applied to this wallet
+This **GET** endpoint is used to retrieve all autopay rules currently applied to the provided wallet token. <br> You can use this endpoint to obtain information about the autopay rules associated with the wallet. <br> To use this endpoint, you need to provide the `user_token` and `wallet_token` as required parameters in the URL Path. <br> The response will include a JSON array containing details for each autopay rule, including the token, `destination_token` and percentage.
 
 ### Examples
 
@@ -264,13 +256,10 @@ require 'time'
 require 'masspay_ruby_sdk'
 # setup authorization
 MassPayRubySdk.configure do |config|
-  # Configure API key authorization: api_key
-  config.api_key['api_key'] = 'YOUR API KEY'
+  # Configure API key authorization: AUTHORIZER_NAME
+  config.api_key['AUTHORIZER_NAME'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  # config.api_key_prefix['api_key'] = 'Bearer'
-
-  # Configure Bearer authorization: AUTHORIZER_NAME
-  config.access_token = 'YOUR_BEARER_TOKEN'
+  # config.api_key_prefix['AUTHORIZER_NAME'] = 'Bearer'
 end
 
 api_instance = MassPayRubySdk::LoadApi.new
@@ -317,7 +306,7 @@ end
 
 ### Authorization
 
-[api_key](../README.md#api_key), [AUTHORIZER_NAME](../README.md#AUTHORIZER_NAME)
+[AUTHORIZER_NAME](../README.md#AUTHORIZER_NAME)
 
 ### HTTP request headers
 
@@ -331,7 +320,7 @@ end
 
 Get history of loads by user token
 
-Gets a transaction history of all loads that were made to the provided user token, including scheduled loads.
+This **GET** endpoint is used to retrieve a transaction history of all loads that were made to the provided user token, including scheduled loads. <br> You can use this endpoint to obtain a comprehensive history of loads for the user token, allowing you to track and analyze their incoming payments over time. <br> To use this endpoint, you need to provide the `user_token` as a parameter in the URL Path. <br> The endpoint will then return a JSON array of load transactions, each including transactions details.
 
 ### Examples
 
@@ -340,13 +329,10 @@ require 'time'
 require 'masspay_ruby_sdk'
 # setup authorization
 MassPayRubySdk.configure do |config|
-  # Configure API key authorization: api_key
-  config.api_key['api_key'] = 'YOUR API KEY'
+  # Configure API key authorization: AUTHORIZER_NAME
+  config.api_key['AUTHORIZER_NAME'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  # config.api_key_prefix['api_key'] = 'Bearer'
-
-  # Configure Bearer authorization: AUTHORIZER_NAME
-  config.access_token = 'YOUR_BEARER_TOKEN'
+  # config.api_key_prefix['AUTHORIZER_NAME'] = 'Bearer'
 end
 
 api_instance = MassPayRubySdk::LoadApi.new
@@ -395,7 +381,7 @@ end
 
 ### Authorization
 
-[api_key](../README.md#api_key), [AUTHORIZER_NAME](../README.md#AUTHORIZER_NAME)
+[AUTHORIZER_NAME](../README.md#AUTHORIZER_NAME)
 
 ### HTTP request headers
 
@@ -409,7 +395,7 @@ end
 
 Initiate a load transaction
 
-Initiates a load of funds into a user token's wallet.
+This **POST** endpoint is used to initiate a load transaction, allowing you to add funds to a user token's wallet. <br> To use this endpoint, you need to provide the `user_token` as a parameter in the URL Path. You also need to provide the `client_load_id`, `source_token`, and amount as JSON parameters in the Request Body. The `client_load_id` is a unique identifier for the transaction that you can use to track it, while the `source_token` is the token or account from which the funds will be loaded. The amount parameter specifies the amount of funds to be loaded into the user's wallet. <br> The response will contain a JSON object indicating the status of the load transaction and any relevant details.
 
 ### Examples
 
@@ -418,13 +404,10 @@ require 'time'
 require 'masspay_ruby_sdk'
 # setup authorization
 MassPayRubySdk.configure do |config|
-  # Configure API key authorization: api_key
-  config.api_key['api_key'] = 'YOUR API KEY'
+  # Configure API key authorization: AUTHORIZER_NAME
+  config.api_key['AUTHORIZER_NAME'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  # config.api_key_prefix['api_key'] = 'Bearer'
-
-  # Configure Bearer authorization: AUTHORIZER_NAME
-  config.access_token = 'YOUR_BEARER_TOKEN'
+  # config.api_key_prefix['AUTHORIZER_NAME'] = 'Bearer'
 end
 
 api_instance = MassPayRubySdk::LoadApi.new
@@ -475,7 +458,7 @@ end
 
 ### Authorization
 
-[api_key](../README.md#api_key), [AUTHORIZER_NAME](../README.md#AUTHORIZER_NAME)
+[AUTHORIZER_NAME](../README.md#AUTHORIZER_NAME)
 
 ### HTTP request headers
 
@@ -483,13 +466,13 @@ end
 - **Accept**: application/json
 
 
-## resend_load_notification
+## load_user_token_put
 
-> <ResendLoadNotification200Response> resend_load_notification(user_token, load_token, opts)
+> <ResendBalanceNotification200Response> load_user_token_put(user_token, load_token, opts)
 
 Resend Load Notification
 
-
+This **PUT** endpoint is used to resend a load notification to the user associated with the provided `user_token` for a specific load transaction. <br> You can use this endpoint to help ensure that users are notified promptly and accurately of any incoming funds or other important payment events. <br> To use this endpoint, you need to provide the `user_token` as a parameter in the URL Path, and the `load_token` as a parameter in the Query string. The endpoint will then resend a notification to the user for the specified load transaction. <br> The response will contain a JSON object indicating the status of the request.
 
 ### Examples
 
@@ -498,13 +481,10 @@ require 'time'
 require 'masspay_ruby_sdk'
 # setup authorization
 MassPayRubySdk.configure do |config|
-  # Configure API key authorization: api_key
-  config.api_key['api_key'] = 'YOUR API KEY'
+  # Configure API key authorization: AUTHORIZER_NAME
+  config.api_key['AUTHORIZER_NAME'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  # config.api_key_prefix['api_key'] = 'Bearer'
-
-  # Configure Bearer authorization: AUTHORIZER_NAME
-  config.access_token = 'YOUR_BEARER_TOKEN'
+  # config.api_key_prefix['AUTHORIZER_NAME'] = 'Bearer'
 end
 
 api_instance = MassPayRubySdk::LoadApi.new
@@ -516,28 +496,28 @@ opts = {
 
 begin
   # Resend Load Notification
-  result = api_instance.resend_load_notification(user_token, load_token, opts)
+  result = api_instance.load_user_token_put(user_token, load_token, opts)
   p result
 rescue MassPayRubySdk::ApiError => e
-  puts "Error when calling LoadApi->resend_load_notification: #{e}"
+  puts "Error when calling LoadApi->load_user_token_put: #{e}"
 end
 ```
 
-#### Using the resend_load_notification_with_http_info variant
+#### Using the load_user_token_put_with_http_info variant
 
 This returns an Array which contains the response data, status code and headers.
 
-> <Array(<ResendLoadNotification200Response>, Integer, Hash)> resend_load_notification_with_http_info(user_token, load_token, opts)
+> <Array(<ResendBalanceNotification200Response>, Integer, Hash)> load_user_token_put_with_http_info(user_token, load_token, opts)
 
 ```ruby
 begin
   # Resend Load Notification
-  data, status_code, headers = api_instance.resend_load_notification_with_http_info(user_token, load_token, opts)
+  data, status_code, headers = api_instance.load_user_token_put_with_http_info(user_token, load_token, opts)
   p status_code # => 2xx
   p headers # => { ... }
-  p data # => <ResendLoadNotification200Response>
+  p data # => <ResendBalanceNotification200Response>
 rescue MassPayRubySdk::ApiError => e
-  puts "Error when calling LoadApi->resend_load_notification_with_http_info: #{e}"
+  puts "Error when calling LoadApi->load_user_token_put_with_http_info: #{e}"
 end
 ```
 
@@ -551,11 +531,88 @@ end
 
 ### Return type
 
-[**ResendLoadNotification200Response**](ResendLoadNotification200Response.md)
+[**ResendBalanceNotification200Response**](ResendBalanceNotification200Response.md)
 
 ### Authorization
 
-[api_key](../README.md#api_key), [AUTHORIZER_NAME](../README.md#AUTHORIZER_NAME)
+[AUTHORIZER_NAME](../README.md#AUTHORIZER_NAME)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+
+## resend_balance_notification
+
+> <ResendBalanceNotification200Response> resend_balance_notification(user_token, opts)
+
+Resend Balance Notification
+
+
+
+### Examples
+
+```ruby
+require 'time'
+require 'masspay_ruby_sdk'
+# setup authorization
+MassPayRubySdk.configure do |config|
+  # Configure API key authorization: AUTHORIZER_NAME
+  config.api_key['AUTHORIZER_NAME'] = 'YOUR API KEY'
+  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
+  # config.api_key_prefix['AUTHORIZER_NAME'] = 'Bearer'
+end
+
+api_instance = MassPayRubySdk::LoadApi.new
+user_token = '38400000-8cf0-11bd-b23e-10b96e4ef00d' # String | Token representing the user who owns the wallet
+opts = {
+  idempotency_key: 'idempotency_key_example', # String | Unique key to prevent duplicate processing
+  wallet_token: '38400000-8cf0-11bd-b23e-10b96e4ef00d' # String | Optional wallet token. If none is provided, select the first wallet available
+}
+
+begin
+  # Resend Balance Notification
+  result = api_instance.resend_balance_notification(user_token, opts)
+  p result
+rescue MassPayRubySdk::ApiError => e
+  puts "Error when calling LoadApi->resend_balance_notification: #{e}"
+end
+```
+
+#### Using the resend_balance_notification_with_http_info variant
+
+This returns an Array which contains the response data, status code and headers.
+
+> <Array(<ResendBalanceNotification200Response>, Integer, Hash)> resend_balance_notification_with_http_info(user_token, opts)
+
+```ruby
+begin
+  # Resend Balance Notification
+  data, status_code, headers = api_instance.resend_balance_notification_with_http_info(user_token, opts)
+  p status_code # => 2xx
+  p headers # => { ... }
+  p data # => <ResendBalanceNotification200Response>
+rescue MassPayRubySdk::ApiError => e
+  puts "Error when calling LoadApi->resend_balance_notification_with_http_info: #{e}"
+end
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+| ---- | ---- | ----------- | ----- |
+| **user_token** | **String** | Token representing the user who owns the wallet |  |
+| **idempotency_key** | **String** | Unique key to prevent duplicate processing | [optional] |
+| **wallet_token** | **String** | Optional wallet token. If none is provided, select the first wallet available | [optional] |
+
+### Return type
+
+[**ResendBalanceNotification200Response**](ResendBalanceNotification200Response.md)
+
+### Authorization
+
+[AUTHORIZER_NAME](../README.md#AUTHORIZER_NAME)
 
 ### HTTP request headers
 

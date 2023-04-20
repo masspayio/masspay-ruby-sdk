@@ -4,89 +4,8 @@ All URIs are relative to *https://api.masspay.io/v0.1.4*
 
 | Method | HTTP request | Description |
 | ------ | ------------ | ----------- |
-| [**find_attributes_velocity**](AttributeApi.md#find_attributes_velocity) | **POST** /attribute/{user_token}/velocity | Attributes velocity check |
 | [**get_attrs**](AttributeApi.md#get_attrs) | **GET** /attribute/{user_token}/{destination_token}/{currency} | Get user attributes for destination_token |
 | [**store_attrs**](AttributeApi.md#store_attrs) | **POST** /attribute/{user_token}/{destination_token}/{currency} | Store user attributes |
-
-
-## find_attributes_velocity
-
-> Array&lt;Object&gt; find_attributes_velocity(user_token, opts)
-
-Attributes velocity check
-
-Identify users with matching attribute values
-
-### Examples
-
-```ruby
-require 'time'
-require 'masspay_ruby_sdk'
-# setup authorization
-MassPayRubySdk.configure do |config|
-  # Configure API key authorization: api_key
-  config.api_key['api_key'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  # config.api_key_prefix['api_key'] = 'Bearer'
-
-  # Configure Bearer authorization: AUTHORIZER_NAME
-  config.access_token = 'YOUR_BEARER_TOKEN'
-end
-
-api_instance = MassPayRubySdk::AttributeApi.new
-user_token = 'user_token_example' # String | Token representing the user to retrieve attributes for
-opts = {
-  idempotency_key: 'idempotency_key_example', # String | Unique key to prevent duplicate processing
-  attr_velocity_request_inner: [MassPayRubySdk::AttrVelocityRequestInner.new({type: 'CardNumber', value: 'value_example'})] # Array<AttrVelocityRequestInner> | 
-}
-
-begin
-  # Attributes velocity check
-  result = api_instance.find_attributes_velocity(user_token, opts)
-  p result
-rescue MassPayRubySdk::ApiError => e
-  puts "Error when calling AttributeApi->find_attributes_velocity: #{e}"
-end
-```
-
-#### Using the find_attributes_velocity_with_http_info variant
-
-This returns an Array which contains the response data, status code and headers.
-
-> <Array(Array&lt;Object&gt;, Integer, Hash)> find_attributes_velocity_with_http_info(user_token, opts)
-
-```ruby
-begin
-  # Attributes velocity check
-  data, status_code, headers = api_instance.find_attributes_velocity_with_http_info(user_token, opts)
-  p status_code # => 2xx
-  p headers # => { ... }
-  p data # => Array&lt;Object&gt;
-rescue MassPayRubySdk::ApiError => e
-  puts "Error when calling AttributeApi->find_attributes_velocity_with_http_info: #{e}"
-end
-```
-
-### Parameters
-
-| Name | Type | Description | Notes |
-| ---- | ---- | ----------- | ----- |
-| **user_token** | **String** | Token representing the user to retrieve attributes for |  |
-| **idempotency_key** | **String** | Unique key to prevent duplicate processing | [optional] |
-| **attr_velocity_request_inner** | [**Array&lt;AttrVelocityRequestInner&gt;**](AttrVelocityRequestInner.md) |  | [optional] |
-
-### Return type
-
-**Array&lt;Object&gt;**
-
-### Authorization
-
-[api_key](../README.md#api_key), [AUTHORIZER_NAME](../README.md#AUTHORIZER_NAME)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
 
 
 ## get_attrs
@@ -95,7 +14,7 @@ end
 
 Get user attributes for destination_token
 
-Get all the required attributes for the provided user for a prticular destination token. If any of the attributes already have a stored value, it will be returned as well.
+This **GET** endpoint is used to retrieve user attributes for a specific destination token. <br> You can use this endpoint to retrieve user attributes and provide personalized service to your users based on their preferences, demographic data, or other relevant information. <br> To use this endpoint, you need to provide the `user_token`, `destination_token`, and currency as parameters in the URL Path. <br> The endpoint will then return all the required attributes for the provided user for the specified destination token. If any of the attributes already have a stored value, it will be returned as well.
 
 ### Examples
 
@@ -104,13 +23,10 @@ require 'time'
 require 'masspay_ruby_sdk'
 # setup authorization
 MassPayRubySdk.configure do |config|
-  # Configure API key authorization: api_key
-  config.api_key['api_key'] = 'YOUR API KEY'
+  # Configure API key authorization: AUTHORIZER_NAME
+  config.api_key['AUTHORIZER_NAME'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  # config.api_key_prefix['api_key'] = 'Bearer'
-
-  # Configure Bearer authorization: AUTHORIZER_NAME
-  config.access_token = 'YOUR_BEARER_TOKEN'
+  # config.api_key_prefix['AUTHORIZER_NAME'] = 'Bearer'
 end
 
 api_instance = MassPayRubySdk::AttributeApi.new
@@ -163,7 +79,7 @@ end
 
 ### Authorization
 
-[api_key](../README.md#api_key), [AUTHORIZER_NAME](../README.md#AUTHORIZER_NAME)
+[AUTHORIZER_NAME](../README.md#AUTHORIZER_NAME)
 
 ### HTTP request headers
 
@@ -177,7 +93,7 @@ end
 
 Store user attributes
 
-If existing attributes are already stored, this call will override its values.
+This **POST** endpoint is used to store user attributes, allowing you to associate additional data with a user token. <br> To use this endpoint, you need to provide the `user_token`, `destination_token`, and currency as parameters in the URL Path. You also need to provide the attribute values as JSON parameters in the Request body. <br> If existing attributes are already stored for the user, this call will override their values.
 
 ### Examples
 
@@ -186,13 +102,10 @@ require 'time'
 require 'masspay_ruby_sdk'
 # setup authorization
 MassPayRubySdk.configure do |config|
-  # Configure API key authorization: api_key
-  config.api_key['api_key'] = 'YOUR API KEY'
+  # Configure API key authorization: AUTHORIZER_NAME
+  config.api_key['AUTHORIZER_NAME'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  # config.api_key_prefix['api_key'] = 'Bearer'
-
-  # Configure Bearer authorization: AUTHORIZER_NAME
-  config.access_token = 'YOUR_BEARER_TOKEN'
+  # config.api_key_prefix['AUTHORIZER_NAME'] = 'Bearer'
 end
 
 api_instance = MassPayRubySdk::AttributeApi.new
@@ -246,7 +159,7 @@ nil (empty response body)
 
 ### Authorization
 
-[api_key](../README.md#api_key), [AUTHORIZER_NAME](../README.md#AUTHORIZER_NAME)
+[AUTHORIZER_NAME](../README.md#AUTHORIZER_NAME)
 
 ### HTTP request headers
 

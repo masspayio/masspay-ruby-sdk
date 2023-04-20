@@ -23,7 +23,7 @@ module MassPayRubySdk
     # The amount to credit the user's wallet in source currency
     attr_accessor :amount
 
-    # The currency originating balance is stored in. Using [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format. In most cases this value will be USD, and therefore the defaut value if none is provided
+    # The currency originating balance is stored in. Using [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format. In most cases this value will be USD, and therefore the defaut value if none is provided. There is a special currency case for PNTS - learn more [here] (#Points)
     attr_accessor :source_currency_code
 
     # A description for the load. Will be visible to the user receiving the load

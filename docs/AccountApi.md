@@ -14,7 +14,7 @@ All URIs are relative to *https://api.masspay.io/v0.1.4*
 
 Get current available balance
 
-Retrieves the current available balances.
+This **GET** endpoint is used to retrieve the current available balance for the MassPay account. <br> You can use this endpoint to obtain information about the current balance in your account. <br> There are no required parameters needed to access this endpoint. <br> The response will include a JSON objects containing details for the current available balance, including the token, balance and `currency_code`.
 
 ### Examples
 
@@ -23,13 +23,10 @@ require 'time'
 require 'masspay_ruby_sdk'
 # setup authorization
 MassPayRubySdk.configure do |config|
-  # Configure API key authorization: api_key
-  config.api_key['api_key'] = 'YOUR API KEY'
+  # Configure API key authorization: AUTHORIZER_NAME
+  config.api_key['AUTHORIZER_NAME'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  # config.api_key_prefix['api_key'] = 'Bearer'
-
-  # Configure Bearer authorization: AUTHORIZER_NAME
-  config.access_token = 'YOUR_BEARER_TOKEN'
+  # config.api_key_prefix['AUTHORIZER_NAME'] = 'Bearer'
 end
 
 api_instance = MassPayRubySdk::AccountApi.new
@@ -71,7 +68,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[api_key](../README.md#api_key), [AUTHORIZER_NAME](../README.md#AUTHORIZER_NAME)
+[AUTHORIZER_NAME](../README.md#AUTHORIZER_NAME)
 
 ### HTTP request headers
 
@@ -85,7 +82,7 @@ This endpoint does not need any parameter.
 
 Get certified account statement
 
-Retreived a certified PDF ledger statement for a provided timeframe
+This **GET** endpoint is used to retrieve a certified PDF ledger statement for a provided timeframe. <br> You can use this endpoint to obtain a ledger statement for your MassPay account for a specific time period. <br> To use this endpoint, you need to provide the `start_date` and `ending_date` as required parameters in the Query string of the URL. <br> The response will include a certified PDF ledger statement containing transaction details for the specified timeframe.
 
 ### Examples
 
@@ -94,13 +91,10 @@ require 'time'
 require 'masspay_ruby_sdk'
 # setup authorization
 MassPayRubySdk.configure do |config|
-  # Configure API key authorization: api_key
-  config.api_key['api_key'] = 'YOUR API KEY'
+  # Configure API key authorization: AUTHORIZER_NAME
+  config.api_key['AUTHORIZER_NAME'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  # config.api_key_prefix['api_key'] = 'Bearer'
-
-  # Configure Bearer authorization: AUTHORIZER_NAME
-  config.access_token = 'YOUR_BEARER_TOKEN'
+  # config.api_key_prefix['AUTHORIZER_NAME'] = 'Bearer'
 end
 
 api_instance = MassPayRubySdk::AccountApi.new
@@ -147,7 +141,7 @@ end
 
 ### Authorization
 
-[api_key](../README.md#api_key), [AUTHORIZER_NAME](../README.md#AUTHORIZER_NAME)
+[AUTHORIZER_NAME](../README.md#AUTHORIZER_NAME)
 
 ### HTTP request headers
 

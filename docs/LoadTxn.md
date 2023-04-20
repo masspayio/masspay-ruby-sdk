@@ -7,7 +7,7 @@
 | **client_load_id** | **String** | A client defined load identifier. This is the unique ID assigned to the load on your system. Max 50 characters. |  |
 | **source_token** | **String** | Token that represents the funding source i.e. bank account, wallet. 36 characters long |  |
 | **amount** | **Float** | The amount to credit the user&#39;s wallet in source currency |  |
-| **source_currency_code** | **String** | The currency originating balance is stored in. Using [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format. In most cases this value will be USD, and therefore the defaut value if none is provided | [optional] |
+| **source_currency_code** | **String** | The currency originating balance is stored in. Using [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format. In most cases this value will be USD, and therefore the defaut value if none is provided. There is a special currency case for PNTS - learn more [here] (#Points) | [optional] |
 | **notes** | **String** | A description for the load. Will be visible to the user receiving the load | [optional] |
 | **notify_user** | **Boolean** | Should we notify the user via email that they&#39;ve received a load? If the user has no existing account, they will receive instructions to establish such account. | [optional][default to true] |
 | **time_to_process** | **String** | Future date/time to process the load on. If none is provided, it is processed right away. Time to be provided in UTC [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) | [optional] |

@@ -19,7 +19,7 @@ module MassPayRubySdk
       @api_client = api_client
     end
     # Add autopay rule
-    # Create an autopay rule that will automatically initiate a payout whenever the `wallet_token` is loaded
+    # This **POST** endpoint is used to add an autopay rule that will initiate a payout whenever the provided wallet token is loaded. <br> You can use this endpoint to create an autopay rule that automatically sends a percentage of incoming load to a specific destination. <br> To use this endpoint, you need to provide the `user_token` and `wallet_token` as required parameters in the URL Path, and the `destination_token` and percentage of incoming load that should be autopaid to the `destination_token` in the request Body. <br> The response will include a JSON object containing the details of the created autopay rule, including the token, `destination_token` and percentage.
     # @param user_token [String] Token representing the user who owns the wallet
     # @param wallet_token [String] Token representing the wallet
     # @param [Hash] opts the optional parameters
@@ -31,7 +31,7 @@ module MassPayRubySdk
     end
 
     # Add autopay rule
-    # Create an autopay rule that will automatically initiate a payout whenever the &#x60;wallet_token&#x60; is loaded
+    # This **POST** endpoint is used to add an autopay rule that will initiate a payout whenever the provided wallet token is loaded. &lt;br&gt; You can use this endpoint to create an autopay rule that automatically sends a percentage of incoming load to a specific destination. &lt;br&gt; To use this endpoint, you need to provide the &#x60;user_token&#x60; and &#x60;wallet_token&#x60; as required parameters in the URL Path, and the &#x60;destination_token&#x60; and percentage of incoming load that should be autopaid to the &#x60;destination_token&#x60; in the request Body. &lt;br&gt; The response will include a JSON object containing the details of the created autopay rule, including the token, &#x60;destination_token&#x60; and percentage.
     # @param user_token [String] Token representing the user who owns the wallet
     # @param wallet_token [String] Token representing the wallet
     # @param [Hash] opts the optional parameters
@@ -75,7 +75,7 @@ module MassPayRubySdk
       return_type = opts[:debug_return_type] || 'AutopayResp'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['api_key', 'AUTHORIZER_NAME']
+      auth_names = opts[:debug_auth_names] || ['AUTHORIZER_NAME']
 
       new_options = opts.merge(
         :operation => :"WalletApi.create_autopay_rule",
@@ -95,7 +95,7 @@ module MassPayRubySdk
     end
 
     # Delete autopay rule
-    # Deletes an autopay rule
+    # This **DELETE** endpoint is used to delete an existing autopay rule. <br> You can use this endpoint to remove an autopay rule that is no longer needed. <br> To use this endpoint, you need to provide the `user_token` and `wallet_token` as required parameters in the URL Path, and the token of the autopay rule you wish to delete in the request Body. <br> The response will include a message indicating the success of the deletion.
     # @param user_token [String] Token representing the user who owns the wallet
     # @param wallet_token [String] Token representing the wallet
     # @param token [String] Autopay token to delete
@@ -107,7 +107,7 @@ module MassPayRubySdk
     end
 
     # Delete autopay rule
-    # Deletes an autopay rule
+    # This **DELETE** endpoint is used to delete an existing autopay rule. &lt;br&gt; You can use this endpoint to remove an autopay rule that is no longer needed. &lt;br&gt; To use this endpoint, you need to provide the &#x60;user_token&#x60; and &#x60;wallet_token&#x60; as required parameters in the URL Path, and the token of the autopay rule you wish to delete in the request Body. &lt;br&gt; The response will include a message indicating the success of the deletion.
     # @param user_token [String] Token representing the user who owns the wallet
     # @param wallet_token [String] Token representing the wallet
     # @param token [String] Autopay token to delete
@@ -151,7 +151,7 @@ module MassPayRubySdk
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['api_key', 'AUTHORIZER_NAME']
+      auth_names = opts[:debug_auth_names] || ['AUTHORIZER_NAME']
 
       new_options = opts.merge(
         :operation => :"WalletApi.delete_autopay_rule",
@@ -171,7 +171,7 @@ module MassPayRubySdk
     end
 
     # Get all autopay rules
-    # Obtain list of all autopay rules currently applied to this wallet
+    # This **GET** endpoint is used to retrieve all autopay rules currently applied to the provided wallet token. <br> You can use this endpoint to obtain information about the autopay rules associated with the wallet. <br> To use this endpoint, you need to provide the `user_token` and `wallet_token` as required parameters in the URL Path. <br> The response will include a JSON array containing details for each autopay rule, including the token, `destination_token` and percentage.
     # @param user_token [String] Token representing the user who owns the wallet
     # @param wallet_token [String] Token representing the wallet
     # @param [Hash] opts the optional parameters
@@ -182,7 +182,7 @@ module MassPayRubySdk
     end
 
     # Get all autopay rules
-    # Obtain list of all autopay rules currently applied to this wallet
+    # This **GET** endpoint is used to retrieve all autopay rules currently applied to the provided wallet token. &lt;br&gt; You can use this endpoint to obtain information about the autopay rules associated with the wallet. &lt;br&gt; To use this endpoint, you need to provide the &#x60;user_token&#x60; and &#x60;wallet_token&#x60; as required parameters in the URL Path. &lt;br&gt; The response will include a JSON array containing details for each autopay rule, including the token, &#x60;destination_token&#x60; and percentage.
     # @param user_token [String] Token representing the user who owns the wallet
     # @param wallet_token [String] Token representing the wallet
     # @param [Hash] opts the optional parameters
@@ -220,7 +220,7 @@ module MassPayRubySdk
       return_type = opts[:debug_return_type] || 'Array<AutopayResp>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['api_key', 'AUTHORIZER_NAME']
+      auth_names = opts[:debug_auth_names] || ['AUTHORIZER_NAME']
 
       new_options = opts.merge(
         :operation => :"WalletApi.get_autopay_rules",
@@ -240,7 +240,7 @@ module MassPayRubySdk
     end
 
     # Retrieve all available wallets for a user
-    # Retrieves all available wallets for a provided user token.
+    # This **GET** endpoint is used to retrieve all available wallets for a provided user token. <br> You can use this endpoint to obtain information about the wallets associated with the provided user token. <br> To use this endpoint, you need to provide the `user_token` as a required parameter in the URL Path. <br> The response will include a JSON array containing details for each wallet including `user_token`, `balance`, `currency_code`.
     # @param user_token [String] Token representing the user who owns the wallet
     # @param [Hash] opts the optional parameters
     # @option opts [String] :idempotency_key Unique key to prevent duplicate processing
@@ -251,7 +251,7 @@ module MassPayRubySdk
     end
 
     # Retrieve all available wallets for a user
-    # Retrieves all available wallets for a provided user token.
+    # This **GET** endpoint is used to retrieve all available wallets for a provided user token. &lt;br&gt; You can use this endpoint to obtain information about the wallets associated with the provided user token. &lt;br&gt; To use this endpoint, you need to provide the &#x60;user_token&#x60; as a required parameter in the URL Path. &lt;br&gt; The response will include a JSON array containing details for each wallet including &#x60;user_token&#x60;, &#x60;balance&#x60;, &#x60;currency_code&#x60;.
     # @param user_token [String] Token representing the user who owns the wallet
     # @param [Hash] opts the optional parameters
     # @option opts [String] :idempotency_key Unique key to prevent duplicate processing
@@ -286,7 +286,7 @@ module MassPayRubySdk
       return_type = opts[:debug_return_type] || 'Array<WalletTxnResp>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['api_key', 'AUTHORIZER_NAME']
+      auth_names = opts[:debug_auth_names] || ['AUTHORIZER_NAME']
 
       new_options = opts.merge(
         :operation => :"WalletApi.get_wallet",
@@ -306,7 +306,7 @@ module MassPayRubySdk
     end
 
     # Get MassPay Card Information
-    # Retrieves MassPay card information that is associated with the provided wallet token
+    # This **GET** endpoint is used to retrieve MassPay card information associated with the provided wallet token. <br> You can use this endpoint to obtain information about the MassPay card associated with the wallet. <br> To use this endpoint, you need to provide the `user_token` and `wallet_token` as required parameters in the URL Path. <br> The response will include a JSON object containing details for the MassPay card, including the card number, balance, status.
     # @param user_token [String] Token representing the user who owns the wallet
     # @param wallet_token [String] Token representing the wallet
     # @param [Hash] opts the optional parameters
@@ -317,7 +317,7 @@ module MassPayRubySdk
     end
 
     # Get MassPay Card Information
-    # Retrieves MassPay card information that is associated with the provided wallet token
+    # This **GET** endpoint is used to retrieve MassPay card information associated with the provided wallet token. &lt;br&gt; You can use this endpoint to obtain information about the MassPay card associated with the wallet. &lt;br&gt; To use this endpoint, you need to provide the &#x60;user_token&#x60; and &#x60;wallet_token&#x60; as required parameters in the URL Path. &lt;br&gt; The response will include a JSON object containing details for the MassPay card, including the card number, balance, status.
     # @param user_token [String] Token representing the user who owns the wallet
     # @param wallet_token [String] Token representing the wallet
     # @param [Hash] opts the optional parameters
@@ -355,7 +355,7 @@ module MassPayRubySdk
       return_type = opts[:debug_return_type] || 'GetWalletCardInfo200Response'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['api_key', 'AUTHORIZER_NAME']
+      auth_names = opts[:debug_auth_names] || ['AUTHORIZER_NAME']
 
       new_options = opts.merge(
         :operation => :"WalletApi.get_wallet_card_info",
@@ -375,7 +375,7 @@ module MassPayRubySdk
     end
 
     # Update MassPay Card Information
-    # Update card pin number or/and status
+    # This **PUT** endpoint is used to update the MassPay card information for a provided user token and wallet token. <br> You can use this endpoint to help your users manage their MassPay card information, including updating their card PIN number or status. <br> To use this endpoint, you need to provide the `user_token` and `wallet_token` as parameters in the URL Path, along with the parameters in the request Query, including the card pin number or(and) status. <br> The endpoint will then update the card information for the provided user and wallet token.
     # @param user_token [String] Token representing the user who owns the wallet
     # @param wallet_token [String] Token representing the wallet
     # @param [Hash] opts the optional parameters
@@ -388,7 +388,7 @@ module MassPayRubySdk
     end
 
     # Update MassPay Card Information
-    # Update card pin number or/and status
+    # This **PUT** endpoint is used to update the MassPay card information for a provided user token and wallet token. &lt;br&gt; You can use this endpoint to help your users manage their MassPay card information, including updating their card PIN number or status. &lt;br&gt; To use this endpoint, you need to provide the &#x60;user_token&#x60; and &#x60;wallet_token&#x60; as parameters in the URL Path, along with the parameters in the request Query, including the card pin number or(and) status. &lt;br&gt; The endpoint will then update the card information for the provided user and wallet token.
     # @param user_token [String] Token representing the user who owns the wallet
     # @param wallet_token [String] Token representing the wallet
     # @param [Hash] opts the optional parameters
@@ -439,7 +439,7 @@ module MassPayRubySdk
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['api_key', 'AUTHORIZER_NAME']
+      auth_names = opts[:debug_auth_names] || ['AUTHORIZER_NAME']
 
       new_options = opts.merge(
         :operation => :"WalletApi.update_wallet_card_info",

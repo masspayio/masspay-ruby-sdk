@@ -13,40 +13,58 @@ require 'date'
 require 'time'
 
 module MassPayRubySdk
-  class AttrVelocityRequestInner
-    # The type of attribute to look for
-    attr_accessor :type
+  class TaxYearUserResp
+    attr_accessor :user_token
 
-    # The value to search for
-    attr_accessor :value
+    attr_accessor :address1
 
-    class EnumAttributeValidator
-      attr_reader :datatype
-      attr_reader :allowable_values
+    attr_accessor :address2
 
-      def initialize(datatype, allowable_values)
-        @allowable_values = allowable_values.map do |value|
-          case datatype.to_s
-          when /Integer/i
-            value.to_i
-          when /Float/i
-            value.to_f
-          else
-            value
-          end
-        end
-      end
+    attr_accessor :city
 
-      def valid?(value)
-        !value || allowable_values.include?(value)
-      end
-    end
+    attr_accessor :state_province
+
+    attr_accessor :postal_code
+
+    attr_accessor :country
+
+    attr_accessor :first_name
+
+    attr_accessor :middle_name
+
+    attr_accessor :last_name
+
+    attr_accessor :email
+
+    attr_accessor :mobile_number
+
+    attr_accessor :business_name
+
+    attr_accessor :date_of_birth
+
+    attr_accessor :balance
+
+    attr_accessor :tax_id
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'type' => :'type',
-        :'value' => :'value'
+        :'user_token' => :'user_token',
+        :'address1' => :'address1',
+        :'address2' => :'address2',
+        :'city' => :'city',
+        :'state_province' => :'state_province',
+        :'postal_code' => :'postal_code',
+        :'country' => :'country',
+        :'first_name' => :'first_name',
+        :'middle_name' => :'middle_name',
+        :'last_name' => :'last_name',
+        :'email' => :'email',
+        :'mobile_number' => :'mobile_number',
+        :'business_name' => :'business_name',
+        :'date_of_birth' => :'date_of_birth',
+        :'balance' => :'balance',
+        :'tax_id' => :'tax_id'
       }
     end
 
@@ -58,8 +76,22 @@ module MassPayRubySdk
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'type' => :'String',
-        :'value' => :'String'
+        :'user_token' => :'String',
+        :'address1' => :'String',
+        :'address2' => :'String',
+        :'city' => :'String',
+        :'state_province' => :'String',
+        :'postal_code' => :'String',
+        :'country' => :'String',
+        :'first_name' => :'String',
+        :'middle_name' => :'String',
+        :'last_name' => :'String',
+        :'email' => :'String',
+        :'mobile_number' => :'String',
+        :'business_name' => :'String',
+        :'date_of_birth' => :'String',
+        :'balance' => :'Float',
+        :'tax_id' => :'String'
       }
     end
 
@@ -73,23 +105,79 @@ module MassPayRubySdk
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `MassPayRubySdk::AttrVelocityRequestInner` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `MassPayRubySdk::TaxYearUserResp` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `MassPayRubySdk::AttrVelocityRequestInner`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `MassPayRubySdk::TaxYearUserResp`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'type')
-        self.type = attributes[:'type']
+      if attributes.key?(:'user_token')
+        self.user_token = attributes[:'user_token']
       end
 
-      if attributes.key?(:'value')
-        self.value = attributes[:'value']
+      if attributes.key?(:'address1')
+        self.address1 = attributes[:'address1']
+      end
+
+      if attributes.key?(:'address2')
+        self.address2 = attributes[:'address2']
+      end
+
+      if attributes.key?(:'city')
+        self.city = attributes[:'city']
+      end
+
+      if attributes.key?(:'state_province')
+        self.state_province = attributes[:'state_province']
+      end
+
+      if attributes.key?(:'postal_code')
+        self.postal_code = attributes[:'postal_code']
+      end
+
+      if attributes.key?(:'country')
+        self.country = attributes[:'country']
+      end
+
+      if attributes.key?(:'first_name')
+        self.first_name = attributes[:'first_name']
+      end
+
+      if attributes.key?(:'middle_name')
+        self.middle_name = attributes[:'middle_name']
+      end
+
+      if attributes.key?(:'last_name')
+        self.last_name = attributes[:'last_name']
+      end
+
+      if attributes.key?(:'email')
+        self.email = attributes[:'email']
+      end
+
+      if attributes.key?(:'mobile_number')
+        self.mobile_number = attributes[:'mobile_number']
+      end
+
+      if attributes.key?(:'business_name')
+        self.business_name = attributes[:'business_name']
+      end
+
+      if attributes.key?(:'date_of_birth')
+        self.date_of_birth = attributes[:'date_of_birth']
+      end
+
+      if attributes.key?(:'balance')
+        self.balance = attributes[:'balance']
+      end
+
+      if attributes.key?(:'tax_id')
+        self.tax_id = attributes[:'tax_id']
       end
     end
 
@@ -97,12 +185,32 @@ module MassPayRubySdk
     # @return Array for valid properties with the reasons
     def list_invalid_properties
       invalid_properties = Array.new
-      if @type.nil?
-        invalid_properties.push('invalid value for "type", type cannot be nil.')
+      if @address1.nil?
+        invalid_properties.push('invalid value for "address1", address1 cannot be nil.')
       end
 
-      if @value.nil?
-        invalid_properties.push('invalid value for "value", value cannot be nil.')
+      if @city.nil?
+        invalid_properties.push('invalid value for "city", city cannot be nil.')
+      end
+
+      if @country.nil?
+        invalid_properties.push('invalid value for "country", country cannot be nil.')
+      end
+
+      if @first_name.nil?
+        invalid_properties.push('invalid value for "first_name", first_name cannot be nil.')
+      end
+
+      if @last_name.nil?
+        invalid_properties.push('invalid value for "last_name", last_name cannot be nil.')
+      end
+
+      if @date_of_birth.nil?
+        invalid_properties.push('invalid value for "date_of_birth", date_of_birth cannot be nil.')
+      end
+
+      if @balance.nil?
+        invalid_properties.push('invalid value for "balance", balance cannot be nil.')
       end
 
       invalid_properties
@@ -111,21 +219,14 @@ module MassPayRubySdk
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
-      return false if @type.nil?
-      type_validator = EnumAttributeValidator.new('String', ["CardNumber", "BankAccountType", "BankAccountNumber", "BankAccountBranchNumber", "BankName", "PhoneNumber", "Gender", "IdentificationNumber", "BillReferenceNumber", "BankRoutingNumber", "BankAccountName", "MaidenName", "SocialSecurity", "EmploymentName", "EmploymentAddress", "EmploymentPhone", "EmploymentOccupation", "EmploymentSupervisor", "RemittanceReason", "Relationship", "SecondLastName", "SWIFT", "BirthCountry", "SourceOfFunds", "DateOfBirth", "CardExpiration", "CardZip", "IdentificationType", "BankCity", "BankState", "IDSelfieCollection", "City", "Country", "IdentificationExpiration", "Address1"])
-      return false unless type_validator.valid?(@type)
-      return false if @value.nil?
+      return false if @address1.nil?
+      return false if @city.nil?
+      return false if @country.nil?
+      return false if @first_name.nil?
+      return false if @last_name.nil?
+      return false if @date_of_birth.nil?
+      return false if @balance.nil?
       true
-    end
-
-    # Custom attribute writer method checking allowed values (enum).
-    # @param [Object] type Object to be assigned
-    def type=(type)
-      validator = EnumAttributeValidator.new('String', ["CardNumber", "BankAccountType", "BankAccountNumber", "BankAccountBranchNumber", "BankName", "PhoneNumber", "Gender", "IdentificationNumber", "BillReferenceNumber", "BankRoutingNumber", "BankAccountName", "MaidenName", "SocialSecurity", "EmploymentName", "EmploymentAddress", "EmploymentPhone", "EmploymentOccupation", "EmploymentSupervisor", "RemittanceReason", "Relationship", "SecondLastName", "SWIFT", "BirthCountry", "SourceOfFunds", "DateOfBirth", "CardExpiration", "CardZip", "IdentificationType", "BankCity", "BankState", "IDSelfieCollection", "City", "Country", "IdentificationExpiration", "Address1"])
-      unless validator.valid?(type)
-        fail ArgumentError, "invalid value for \"type\", must be one of #{validator.allowable_values}."
-      end
-      @type = type
     end
 
     # Checks equality by comparing each attribute.
@@ -133,8 +234,22 @@ module MassPayRubySdk
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          type == o.type &&
-          value == o.value
+          user_token == o.user_token &&
+          address1 == o.address1 &&
+          address2 == o.address2 &&
+          city == o.city &&
+          state_province == o.state_province &&
+          postal_code == o.postal_code &&
+          country == o.country &&
+          first_name == o.first_name &&
+          middle_name == o.middle_name &&
+          last_name == o.last_name &&
+          email == o.email &&
+          mobile_number == o.mobile_number &&
+          business_name == o.business_name &&
+          date_of_birth == o.date_of_birth &&
+          balance == o.balance &&
+          tax_id == o.tax_id
     end
 
     # @see the `==` method
@@ -146,7 +261,7 @@ module MassPayRubySdk
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [type, value].hash
+      [user_token, address1, address2, city, state_province, postal_code, country, first_name, middle_name, last_name, email, mobile_number, business_name, date_of_birth, balance, tax_id].hash
     end
 
     # Builds the object from hash

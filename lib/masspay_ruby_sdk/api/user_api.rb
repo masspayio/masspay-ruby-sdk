@@ -19,7 +19,7 @@ module MassPayRubySdk
       @api_client = api_client
     end
     # Create a user
-    # To create a user, send a `POST` request to the `/user` endpoint and include the user details in JSON format in the request body. Upon creation of a user, you'll receive a user_token which would be used to interact with that user.
+    # This **POST** endpoint is used to create a new user in MassPay. <br> You can use this endpoint to create a new user with the specified user details in JSON format in the request Body. <br> To use this endpoint, you need to provide the `internal_user_id`, `country`, `first_name`, `last_name`, and `email` as required parameters in the Request Body. <br> The response will include details about the newly created user.
     # @param user [User] Created user object
     # @param [Hash] opts the optional parameters
     # @return [StoredUser]
@@ -29,7 +29,7 @@ module MassPayRubySdk
     end
 
     # Create a user
-    # To create a user, send a &#x60;POST&#x60; request to the &#x60;/user&#x60; endpoint and include the user details in JSON format in the request body. Upon creation of a user, you&#39;ll receive a user_token which would be used to interact with that user.
+    # This **POST** endpoint is used to create a new user in MassPay. &lt;br&gt; You can use this endpoint to create a new user with the specified user details in JSON format in the request Body. &lt;br&gt; To use this endpoint, you need to provide the &#x60;internal_user_id&#x60;, &#x60;country&#x60;, &#x60;first_name&#x60;, &#x60;last_name&#x60;, and &#x60;email&#x60; as required parameters in the Request Body. &lt;br&gt; The response will include details about the newly created user.
     # @param user [User] Created user object
     # @param [Hash] opts the optional parameters
     # @return [Array<(StoredUser, Integer, Hash)>] StoredUser data, response status code and response headers
@@ -67,7 +67,7 @@ module MassPayRubySdk
       return_type = opts[:debug_return_type] || 'StoredUser'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['api_key', 'AUTHORIZER_NAME']
+      auth_names = opts[:debug_auth_names] || ['AUTHORIZER_NAME']
 
       new_options = opts.merge(
         :operation => :"UserApi.create_user",
@@ -87,7 +87,7 @@ module MassPayRubySdk
     end
 
     # Get user by user token
-    # Gets a user profile for a provided user token.
+    # This **GET** endpoint is used to retrieve a user's profile by their user token in MassPay. <br> You can use this endpoint to obtain a user profile for a specified user token. <br> To use this endpoint, you need to provide the `user_token` as a required parameter in the URL Path. <br> The response will include all available details for the user.
     # @param user_token [String] The user token that needs to be fetched.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :idempotency_key Unique key to prevent duplicate processing
@@ -98,7 +98,7 @@ module MassPayRubySdk
     end
 
     # Get user by user token
-    # Gets a user profile for a provided user token.
+    # This **GET** endpoint is used to retrieve a user&#39;s profile by their user token in MassPay. &lt;br&gt; You can use this endpoint to obtain a user profile for a specified user token. &lt;br&gt; To use this endpoint, you need to provide the &#x60;user_token&#x60; as a required parameter in the URL Path. &lt;br&gt; The response will include all available details for the user.
     # @param user_token [String] The user token that needs to be fetched.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :idempotency_key Unique key to prevent duplicate processing
@@ -133,7 +133,7 @@ module MassPayRubySdk
       return_type = opts[:debug_return_type] || 'StoredUser'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['api_key', 'AUTHORIZER_NAME']
+      auth_names = opts[:debug_auth_names] || ['AUTHORIZER_NAME']
 
       new_options = opts.merge(
         :operation => :"UserApi.get_user_by_token",
@@ -153,7 +153,7 @@ module MassPayRubySdk
     end
 
     # Transactions history
-    # Retrieve list of all tranasctions (payouts/loads/spendbacks) for a provider user.
+    # This **GET** endpoint is used to retrieve a list of all transactions, including payouts, loads, and spendbacks, for a provider user with the provided user token. <br> You can use this endpoint to obtain a comprehensive history of transactions for the provider user, allowing you to track and analyze their payment activities over time. <br> To use this endpoint, you need to provide the `user_token` as a parameter in the URL Path. <br> The response will contain a JSON array of transaction objects, each including transactions details.
     # @param user_token [String] Token representing the user to get transactions history for
     # @param [Hash] opts the optional parameters
     # @option opts [String] :idempotency_key Unique key to prevent duplicate processing
@@ -171,7 +171,7 @@ module MassPayRubySdk
     end
 
     # Transactions history
-    # Retrieve list of all tranasctions (payouts/loads/spendbacks) for a provider user.
+    # This **GET** endpoint is used to retrieve a list of all transactions, including payouts, loads, and spendbacks, for a provider user with the provided user token. &lt;br&gt; You can use this endpoint to obtain a comprehensive history of transactions for the provider user, allowing you to track and analyze their payment activities over time. &lt;br&gt; To use this endpoint, you need to provide the &#x60;user_token&#x60; as a parameter in the URL Path. &lt;br&gt; The response will contain a JSON array of transaction objects, each including transactions details.
     # @param user_token [String] Token representing the user to get transactions history for
     # @param [Hash] opts the optional parameters
     # @option opts [String] :idempotency_key Unique key to prevent duplicate processing
@@ -238,7 +238,7 @@ module MassPayRubySdk
       return_type = opts[:debug_return_type] || 'Array<TxnHistoryResp>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['api_key', 'AUTHORIZER_NAME']
+      auth_names = opts[:debug_auth_names] || ['AUTHORIZER_NAME']
 
       new_options = opts.merge(
         :operation => :"UserApi.get_user_history",
@@ -257,130 +257,8 @@ module MassPayRubySdk
       return data, status_code, headers
     end
 
-    # Get an Au10tix session link
-    # @param user_token [String] 
-    # @param [Hash] opts the optional parameters
-    # @return [GetUserUserTokenKycAu10tix200Response]
-    def get_user_user_token_kyc_au10tix(user_token, opts = {})
-      data, _status_code, _headers = get_user_user_token_kyc_au10tix_with_http_info(user_token, opts)
-      data
-    end
-
-    # Get an Au10tix session link
-    # @param user_token [String] 
-    # @param [Hash] opts the optional parameters
-    # @return [Array<(GetUserUserTokenKycAu10tix200Response, Integer, Hash)>] GetUserUserTokenKycAu10tix200Response data, response status code and response headers
-    def get_user_user_token_kyc_au10tix_with_http_info(user_token, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: UserApi.get_user_user_token_kyc_au10tix ...'
-      end
-      # verify the required parameter 'user_token' is set
-      if @api_client.config.client_side_validation && user_token.nil?
-        fail ArgumentError, "Missing the required parameter 'user_token' when calling UserApi.get_user_user_token_kyc_au10tix"
-      end
-      # resource path
-      local_var_path = '/user/{user_token}/kyc/au10tix'.sub('{' + 'user_token' + '}', CGI.escape(user_token.to_s))
-
-      # query parameters
-      query_params = opts[:query_params] || {}
-
-      # header parameters
-      header_params = opts[:header_params] || {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
-
-      # form parameters
-      form_params = opts[:form_params] || {}
-
-      # http body (model)
-      post_body = opts[:debug_body]
-
-      # return_type
-      return_type = opts[:debug_return_type] || 'GetUserUserTokenKycAu10tix200Response'
-
-      # auth_names
-      auth_names = opts[:debug_auth_names] || ['api_key', 'AUTHORIZER_NAME']
-
-      new_options = opts.merge(
-        :operation => :"UserApi.get_user_user_token_kyc_au10tix",
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => return_type
-      )
-
-      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserApi#get_user_user_token_kyc_au10tix\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
-
-    # Get a Veriff session link
-    # @param user_token [String] 
-    # @param [Hash] opts the optional parameters
-    # @return [GetUserUserTokenKycVeriiff200Response]
-    def get_user_user_token_kyc_veriiff(user_token, opts = {})
-      data, _status_code, _headers = get_user_user_token_kyc_veriiff_with_http_info(user_token, opts)
-      data
-    end
-
-    # Get a Veriff session link
-    # @param user_token [String] 
-    # @param [Hash] opts the optional parameters
-    # @return [Array<(GetUserUserTokenKycVeriiff200Response, Integer, Hash)>] GetUserUserTokenKycVeriiff200Response data, response status code and response headers
-    def get_user_user_token_kyc_veriiff_with_http_info(user_token, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: UserApi.get_user_user_token_kyc_veriiff ...'
-      end
-      # verify the required parameter 'user_token' is set
-      if @api_client.config.client_side_validation && user_token.nil?
-        fail ArgumentError, "Missing the required parameter 'user_token' when calling UserApi.get_user_user_token_kyc_veriiff"
-      end
-      # resource path
-      local_var_path = '/user/{user_token}/kyc/veriff'.sub('{' + 'user_token' + '}', CGI.escape(user_token.to_s))
-
-      # query parameters
-      query_params = opts[:query_params] || {}
-
-      # header parameters
-      header_params = opts[:header_params] || {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json'])
-
-      # form parameters
-      form_params = opts[:form_params] || {}
-
-      # http body (model)
-      post_body = opts[:debug_body]
-
-      # return_type
-      return_type = opts[:debug_return_type] || 'GetUserUserTokenKycVeriiff200Response'
-
-      # auth_names
-      auth_names = opts[:debug_auth_names] || ['api_key', 'AUTHORIZER_NAME']
-
-      new_options = opts.merge(
-        :operation => :"UserApi.get_user_user_token_kyc_veriiff",
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => return_type
-      )
-
-      data, status_code, headers = @api_client.call_api(:GET, local_var_path, new_options)
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: UserApi#get_user_user_token_kyc_veriiff\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
-
     # Updated user
-    # Updates profile information for a provided user token.
+    # This **PUT** endpoint is used to update the profile information of a user with the provided user token. <br> You need to provide the `user_token` in the URL path to identify the user whose information you want to update. The updated information should be provided in the request Body as a JSON object. This endpoint can be used to update various profile information, such as the user's name, email address, phone number, and more. <br> The response will contain the updated user information in a JSON format.
     # @param user_token [String] user token that need to be updated
     # @param update_user [UpdateUser] Updated user object
     # @param [Hash] opts the optional parameters
@@ -392,7 +270,7 @@ module MassPayRubySdk
     end
 
     # Updated user
-    # Updates profile information for a provided user token.
+    # This **PUT** endpoint is used to update the profile information of a user with the provided user token. &lt;br&gt; You need to provide the &#x60;user_token&#x60; in the URL path to identify the user whose information you want to update. The updated information should be provided in the request Body as a JSON object. This endpoint can be used to update various profile information, such as the user&#39;s name, email address, phone number, and more. &lt;br&gt; The response will contain the updated user information in a JSON format.
     # @param user_token [String] user token that need to be updated
     # @param update_user [UpdateUser] Updated user object
     # @param [Hash] opts the optional parameters
@@ -437,7 +315,7 @@ module MassPayRubySdk
       return_type = opts[:debug_return_type] || 'StoredUser'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['api_key', 'AUTHORIZER_NAME']
+      auth_names = opts[:debug_auth_names] || ['AUTHORIZER_NAME']
 
       new_options = opts.merge(
         :operation => :"UserApi.update_user",
@@ -457,7 +335,7 @@ module MassPayRubySdk
     end
 
     # Lookup an existing user
-    # Looksup whether a user with the provided email and first name exist
+    # This **GET** endpoint is used to lookup whether a user with the provided email and first name exists in the MassPay system. <br> To use this endpoint, you need to provide the `email`, `first_name`, and `internal_user_id` as Query parameters in the URL. <br> The endpoint will then search for the user based on the provided information and return a JSON response indicating whether the user exists or not. If the user exists, the response will also contain the user's details, `user_token`, `first_name`, `last_name` and `internal_user_id`.
     # @param email [String] User&#39;s email address. Required if First Name is provided
     # @param first_name [String] User&#39;s first name. Required if email is provided
     # @param internal_user_id [String] A client-defined identifier for the user. This is the unique ID assigned to the user on your system. Max 75 characters. Allows letters, numbers, and + , - . / _ ~ |. Required if email and first name are not provided
@@ -470,7 +348,7 @@ module MassPayRubySdk
     end
 
     # Lookup an existing user
-    # Looksup whether a user with the provided email and first name exist
+    # This **GET** endpoint is used to lookup whether a user with the provided email and first name exists in the MassPay system. &lt;br&gt; To use this endpoint, you need to provide the &#x60;email&#x60;, &#x60;first_name&#x60;, and &#x60;internal_user_id&#x60; as Query parameters in the URL. &lt;br&gt; The endpoint will then search for the user based on the provided information and return a JSON response indicating whether the user exists or not. If the user exists, the response will also contain the user&#39;s details, &#x60;user_token&#x60;, &#x60;first_name&#x60;, &#x60;last_name&#x60; and &#x60;internal_user_id&#x60;.
     # @param email [String] User&#39;s email address. Required if First Name is provided
     # @param first_name [String] User&#39;s first name. Required if email is provided
     # @param internal_user_id [String] A client-defined identifier for the user. This is the unique ID assigned to the user on your system. Max 75 characters. Allows letters, numbers, and + , - . / _ ~ |. Required if email and first name are not provided
@@ -518,7 +396,7 @@ module MassPayRubySdk
       return_type = opts[:debug_return_type] || 'FoundUser'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['api_key', 'AUTHORIZER_NAME']
+      auth_names = opts[:debug_auth_names] || ['AUTHORIZER_NAME']
 
       new_options = opts.merge(
         :operation => :"UserApi.user_lookup",

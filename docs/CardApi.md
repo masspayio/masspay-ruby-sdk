@@ -14,7 +14,7 @@ All URIs are relative to *https://api.masspay.io/v0.1.4*
 
 Get MassPay Card Information
 
-Retrieves MassPay card information that is associated with the provided wallet token
+This **GET** endpoint is used to retrieve MassPay card information associated with the provided wallet token. <br> You can use this endpoint to obtain information about the MassPay card associated with the wallet. <br> To use this endpoint, you need to provide the `user_token` and `wallet_token` as required parameters in the URL Path. <br> The response will include a JSON object containing details for the MassPay card, including the card number, balance, status.
 
 ### Examples
 
@@ -23,13 +23,10 @@ require 'time'
 require 'masspay_ruby_sdk'
 # setup authorization
 MassPayRubySdk.configure do |config|
-  # Configure API key authorization: api_key
-  config.api_key['api_key'] = 'YOUR API KEY'
+  # Configure API key authorization: AUTHORIZER_NAME
+  config.api_key['AUTHORIZER_NAME'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  # config.api_key_prefix['api_key'] = 'Bearer'
-
-  # Configure Bearer authorization: AUTHORIZER_NAME
-  config.access_token = 'YOUR_BEARER_TOKEN'
+  # config.api_key_prefix['AUTHORIZER_NAME'] = 'Bearer'
 end
 
 api_instance = MassPayRubySdk::CardApi.new
@@ -76,7 +73,7 @@ end
 
 ### Authorization
 
-[api_key](../README.md#api_key), [AUTHORIZER_NAME](../README.md#AUTHORIZER_NAME)
+[AUTHORIZER_NAME](../README.md#AUTHORIZER_NAME)
 
 ### HTTP request headers
 
@@ -90,7 +87,7 @@ end
 
 Update MassPay Card Information
 
-Update card pin number or/and status
+This **PUT** endpoint is used to update the MassPay card information for a provided user token and wallet token. <br> You can use this endpoint to help your users manage their MassPay card information, including updating their card PIN number or status. <br> To use this endpoint, you need to provide the `user_token` and `wallet_token` as parameters in the URL Path, along with the parameters in the request Query, including the card pin number or(and) status. <br> The endpoint will then update the card information for the provided user and wallet token.
 
 ### Examples
 
@@ -99,13 +96,10 @@ require 'time'
 require 'masspay_ruby_sdk'
 # setup authorization
 MassPayRubySdk.configure do |config|
-  # Configure API key authorization: api_key
-  config.api_key['api_key'] = 'YOUR API KEY'
+  # Configure API key authorization: AUTHORIZER_NAME
+  config.api_key['AUTHORIZER_NAME'] = 'YOUR API KEY'
   # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  # config.api_key_prefix['api_key'] = 'Bearer'
-
-  # Configure Bearer authorization: AUTHORIZER_NAME
-  config.access_token = 'YOUR_BEARER_TOKEN'
+  # config.api_key_prefix['AUTHORIZER_NAME'] = 'Bearer'
 end
 
 api_instance = MassPayRubySdk::CardApi.new
@@ -157,7 +151,7 @@ nil (empty response body)
 
 ### Authorization
 
-[api_key](../README.md#api_key), [AUTHORIZER_NAME](../README.md#AUTHORIZER_NAME)
+[AUTHORIZER_NAME](../README.md#AUTHORIZER_NAME)
 
 ### HTTP request headers
 

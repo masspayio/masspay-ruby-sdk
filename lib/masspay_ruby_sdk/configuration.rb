@@ -231,19 +231,12 @@ module MassPayRubySdk
     # Returns Auth Settings hash for api client.
     def auth_settings
       {
-        'api_key' =>
+        'AUTHORIZER_NAME' =>
           {
             type: 'api_key',
             in: 'header',
-            key: 'x-api-key',
-            value: api_key_with_prefix('api_key')
-          },
-        'AUTHORIZER_NAME' =>
-          {
-            type: 'bearer',
-            in: 'header',
             key: 'Authorization',
-            value: "Bearer #{access_token_with_refresh}"
+            value: api_key_with_prefix('AUTHORIZER_NAME')
           },
       }
     end

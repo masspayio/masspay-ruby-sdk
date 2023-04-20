@@ -29,10 +29,10 @@ module MassPayRubySdk
     # Service fee
     attr_accessor :fee
 
-    # The maximum amount the user can send with this service. 0 if no upper limit
+    # The maximum amount (inclusive) the user can send with this service. 0 if no upper limit
     attr_accessor :max_limit
 
-    # The minimum amount the user can send with this service. 0 if no lower limit
+    # The minimum amount (inclusive) the user can send with this service. 0 if no lower limit
     attr_accessor :min_limit
 
     # Optional return field. Will only show if `limit` parameter is provided

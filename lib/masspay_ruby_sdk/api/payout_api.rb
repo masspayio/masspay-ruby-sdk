@@ -19,7 +19,7 @@ module MassPayRubySdk
       @api_client = api_client
     end
     # Commit payout transaction
-    # Commits a previously initiated transaction.
+    # This **PUT** endpoint is used to commit a previously created payout transaction. <br> Once a payout transaction is created, you can use this endpoint to commit the transaction and initiate the actual payout. <br> To use this endpoint, you need to provide the `user_token` and `payout_token` of the payout transaction you want to commit in the URL Path. <br> The response will include a JSON object containing details about the committed payout transaction, including the `payout_token`, `payout_status`, `pickup_code` and possible errors.
     # @param user_token [String] Token representing the user to pay out
     # @param payout_token [String] Token representing the trsanaction. Retrieved from &#x60;/payout/{user_token}&#x60;
     # @param [Hash] opts the optional parameters
@@ -31,7 +31,7 @@ module MassPayRubySdk
     end
 
     # Commit payout transaction
-    # Commits a previously initiated transaction.
+    # This **PUT** endpoint is used to commit a previously created payout transaction. &lt;br&gt; Once a payout transaction is created, you can use this endpoint to commit the transaction and initiate the actual payout. &lt;br&gt; To use this endpoint, you need to provide the &#x60;user_token&#x60; and &#x60;payout_token&#x60; of the payout transaction you want to commit in the URL Path. &lt;br&gt; The response will include a JSON object containing details about the committed payout transaction, including the &#x60;payout_token&#x60;, &#x60;payout_status&#x60;, &#x60;pickup_code&#x60; and possible errors.
     # @param user_token [String] Token representing the user to pay out
     # @param payout_token [String] Token representing the trsanaction. Retrieved from &#x60;/payout/{user_token}&#x60;
     # @param [Hash] opts the optional parameters
@@ -71,7 +71,7 @@ module MassPayRubySdk
       return_type = opts[:debug_return_type] || 'PayoutTxnCommitResp'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['api_key', 'AUTHORIZER_NAME']
+      auth_names = opts[:debug_auth_names] || ['AUTHORIZER_NAME']
 
       new_options = opts.merge(
         :operation => :"PayoutApi.commit_payout_txn",
@@ -91,12 +91,13 @@ module MassPayRubySdk
     end
 
     # Get status of a payout by payout token
-    # Retrieves information including status update for a payout token
+    # This **GET** endpoint is used to retrieve the status of a payout transaction for a user with the specified token and payout token. <br> You can use this endpoint to check the status of a specific payout transaction, including whether the payout has been successfully processed or if there was an error. <br> To use this endpoint, you need to provide the `user_token` and `payout_token` in the URL Path. <br> The response will include a JSON object containing details about the payout transaction.
     # @param user_token [String] Token representing the user to pay out
     # @param payout_token [String] Token representing the trsanaction. Retrieved from &#x60;/payout/{user_token}&#x60;
     # @param [Hash] opts the optional parameters
     # @option opts [String] :idempotency_key Unique key to prevent duplicate processing
     # @option opts [Boolean] :force_status_update Attempts to get an updated status update from the payout destination (default to false)
+    # @option opts [Boolean] :include_payer_logo Whether to include the payer logo in base64 format. 
     # @return [PayoutTxnResp]
     def get_payout_status(user_token, payout_token, opts = {})
       data, _status_code, _headers = get_payout_status_with_http_info(user_token, payout_token, opts)
@@ -104,12 +105,13 @@ module MassPayRubySdk
     end
 
     # Get status of a payout by payout token
-    # Retrieves information including status update for a payout token
+    # This **GET** endpoint is used to retrieve the status of a payout transaction for a user with the specified token and payout token. &lt;br&gt; You can use this endpoint to check the status of a specific payout transaction, including whether the payout has been successfully processed or if there was an error. &lt;br&gt; To use this endpoint, you need to provide the &#x60;user_token&#x60; and &#x60;payout_token&#x60; in the URL Path. &lt;br&gt; The response will include a JSON object containing details about the payout transaction.
     # @param user_token [String] Token representing the user to pay out
     # @param payout_token [String] Token representing the trsanaction. Retrieved from &#x60;/payout/{user_token}&#x60;
     # @param [Hash] opts the optional parameters
     # @option opts [String] :idempotency_key Unique key to prevent duplicate processing
     # @option opts [Boolean] :force_status_update Attempts to get an updated status update from the payout destination (default to false)
+    # @option opts [Boolean] :include_payer_logo Whether to include the payer logo in base64 format. 
     # @return [Array<(PayoutTxnResp, Integer, Hash)>] PayoutTxnResp data, response status code and response headers
     def get_payout_status_with_http_info(user_token, payout_token, opts = {})
       if @api_client.config.debugging
@@ -129,6 +131,7 @@ module MassPayRubySdk
       # query parameters
       query_params = opts[:query_params] || {}
       query_params[:'force_status_update'] = opts[:'force_status_update'] if !opts[:'force_status_update'].nil?
+      query_params[:'include_payer_logo'] = opts[:'include_payer_logo'] if !opts[:'include_payer_logo'].nil?
 
       # header parameters
       header_params = opts[:header_params] || {}
@@ -146,7 +149,7 @@ module MassPayRubySdk
       return_type = opts[:debug_return_type] || 'PayoutTxnResp'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['api_key', 'AUTHORIZER_NAME']
+      auth_names = opts[:debug_auth_names] || ['AUTHORIZER_NAME']
 
       new_options = opts.merge(
         :operation => :"PayoutApi.get_payout_status",
@@ -166,7 +169,7 @@ module MassPayRubySdk
     end
 
     # Get transaction confirmation details
-    # Obtains a PDF with all the details of the payout
+    # This **PATCH** endpoint is used to obtain a PDF document with all the details of a payout transaction for a user with the specified token and payout token. <br> You can use this endpoint to obtain confirmation details about a specific payout transaction. <br> To use this endpoint, you need to provide the `user_token` and `payout_token` in the URL Path. <br> The response will include a PDF document containing all the details of the payout transaction.
     # @param user_token [String] Token representing the user to pay out
     # @param payout_token [String] Token representing the trsanaction. Retrieved from &#x60;/payout/{user_token}&#x60;
     # @param [Hash] opts the optional parameters
@@ -178,7 +181,7 @@ module MassPayRubySdk
     end
 
     # Get transaction confirmation details
-    # Obtains a PDF with all the details of the payout
+    # This **PATCH** endpoint is used to obtain a PDF document with all the details of a payout transaction for a user with the specified token and payout token. &lt;br&gt; You can use this endpoint to obtain confirmation details about a specific payout transaction. &lt;br&gt; To use this endpoint, you need to provide the &#x60;user_token&#x60; and &#x60;payout_token&#x60; in the URL Path. &lt;br&gt; The response will include a PDF document containing all the details of the payout transaction.
     # @param user_token [String] Token representing the user to pay out
     # @param payout_token [String] Token representing the trsanaction. Retrieved from &#x60;/payout/{user_token}&#x60;
     # @param [Hash] opts the optional parameters
@@ -218,7 +221,7 @@ module MassPayRubySdk
       return_type = opts[:debug_return_type] || 'GetTransactionConfirmationDetails200Response'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['api_key', 'AUTHORIZER_NAME']
+      auth_names = opts[:debug_auth_names] || ['AUTHORIZER_NAME']
 
       new_options = opts.merge(
         :operation => :"PayoutApi.get_transaction_confirmation_details",
@@ -238,7 +241,7 @@ module MassPayRubySdk
     end
 
     # Get history of payouts by user token
-    # Gets a list of all historical payouts for a provided user token.
+    # This **GET** endpoint is used to retrieve the payout history for a user with the specified token. <br> You can use this endpoint to view all payouts made to a user, including the `payout_token`, `destinantion_token` and `destination_amount`. <br> To use this endpoint, you need to provide the user token of the recipient in the URL Path. <br> The response will include a JSON object containing an array of payout transactions for the specified user, with each transaction including details such as the transaction ID, payout amount, currency, payout status, and date and time of the payout.
     # @param user_token [String] The user token that needs to be fetched.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :idempotency_key Unique key to prevent duplicate processing
@@ -250,7 +253,7 @@ module MassPayRubySdk
     end
 
     # Get history of payouts by user token
-    # Gets a list of all historical payouts for a provided user token.
+    # This **GET** endpoint is used to retrieve the payout history for a user with the specified token. &lt;br&gt; You can use this endpoint to view all payouts made to a user, including the &#x60;payout_token&#x60;, &#x60;destinantion_token&#x60; and &#x60;destination_amount&#x60;. &lt;br&gt; To use this endpoint, you need to provide the user token of the recipient in the URL Path. &lt;br&gt; The response will include a JSON object containing an array of payout transactions for the specified user, with each transaction including details such as the transaction ID, payout amount, currency, payout status, and date and time of the payout.
     # @param user_token [String] The user token that needs to be fetched.
     # @param [Hash] opts the optional parameters
     # @option opts [String] :idempotency_key Unique key to prevent duplicate processing
@@ -287,7 +290,7 @@ module MassPayRubySdk
       return_type = opts[:debug_return_type] || 'Array<PayoutTxnResp>'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['api_key', 'AUTHORIZER_NAME']
+      auth_names = opts[:debug_auth_names] || ['AUTHORIZER_NAME']
 
       new_options = opts.merge(
         :operation => :"PayoutApi.get_user_payouts_by_token",
@@ -307,7 +310,7 @@ module MassPayRubySdk
     end
 
     # Initiate a payout transaction
-    # Initiates a payout transaction to a provided user token.
+    # This **POST** endpoint is used to initiate a payout transaction from your account to a user with a specified token. <br> You can use this endpoint to pay out funds to your users, such as payments for services rendered or rewards for completing tasks. To use this endpoint, you need to provide the user token of the recipient in the URL Path. <br> The request body should include the funding source (`source_token`), payout destination (`destination_token`) and specify in which currency the payout should be made (`destination_currency_code`). <br> As a response API will return all details about your payout transaction.
     # @param user_token [String] Token representing the user to pay out
     # @param payout_txn [PayoutTxn] Payout parameters for a quote
     # @param [Hash] opts the optional parameters
@@ -320,7 +323,7 @@ module MassPayRubySdk
     end
 
     # Initiate a payout transaction
-    # Initiates a payout transaction to a provided user token.
+    # This **POST** endpoint is used to initiate a payout transaction from your account to a user with a specified token. &lt;br&gt; You can use this endpoint to pay out funds to your users, such as payments for services rendered or rewards for completing tasks. To use this endpoint, you need to provide the user token of the recipient in the URL Path. &lt;br&gt; The request body should include the funding source (&#x60;source_token&#x60;), payout destination (&#x60;destination_token&#x60;) and specify in which currency the payout should be made (&#x60;destination_currency_code&#x60;). &lt;br&gt; As a response API will return all details about your payout transaction.
     # @param user_token [String] Token representing the user to pay out
     # @param payout_txn [PayoutTxn] Payout parameters for a quote
     # @param [Hash] opts the optional parameters
@@ -372,7 +375,7 @@ module MassPayRubySdk
       return_type = opts[:debug_return_type] || 'PayoutTxnResp'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['api_key', 'AUTHORIZER_NAME']
+      auth_names = opts[:debug_auth_names] || ['AUTHORIZER_NAME']
 
       new_options = opts.merge(
         :operation => :"PayoutApi.initiate_payout",

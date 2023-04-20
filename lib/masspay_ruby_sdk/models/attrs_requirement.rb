@@ -13,7 +13,6 @@ require 'date'
 require 'time'
 
 module MassPayRubySdk
-  # 
   class AttrsRequirement
     # The token that represents the attribute.
     attr_accessor :token
@@ -41,6 +40,9 @@ module MassPayRubySdk
 
     # The type of input field that is suggested for this this attribute
     attr_accessor :input_type
+
+    # If set to true, it means this was the last value that was used and if no attr_set_token is provided to init payout, this value will be used by default
+    attr_accessor :last_attr_value_used
 
     class EnumAttributeValidator
       attr_reader :datatype
@@ -75,7 +77,8 @@ module MassPayRubySdk
         :'value' => :'value',
         :'expected_value' => :'expected_value',
         :'type' => :'type',
-        :'input_type' => :'input_type'
+        :'input_type' => :'input_type',
+        :'last_attr_value_used' => :'last_attr_value_used'
       }
     end
 
@@ -95,7 +98,8 @@ module MassPayRubySdk
         :'value' => :'String',
         :'expected_value' => :'String',
         :'type' => :'String',
-        :'input_type' => :'String'
+        :'input_type' => :'String',
+        :'last_attr_value_used' => :'Boolean'
       }
     end
 
@@ -157,6 +161,10 @@ module MassPayRubySdk
       else
         self.input_type = 'text'
       end
+
+      if attributes.key?(:'last_attr_value_used')
+        self.last_attr_value_used = attributes[:'last_attr_value_used']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -183,7 +191,7 @@ module MassPayRubySdk
     def valid?
       return false if @token.nil?
       return false if @value.nil?
-      type_validator = EnumAttributeValidator.new('String', ["CardNumber", "BankAccountType", "BankAccountNumber", "BankAccountBranchNumber", "BankName", "PhoneNumber", "Gender", "IdentificationNumber", "BillReferenceNumber", "BankRoutingNumber", "BankAccountName", "MaidenName", "SocialSecurity", "EmploymentName", "EmploymentAddress", "EmploymentPhone", "EmploymentOccupation", "EmploymentSupervisor", "RemittanceReason", "Relationship", "SecondLastName", "SWIFT", "BirthCountry", "SourceOfFunds", "DateOfBirth", "CardExpiration", "CardZip", "IdentificationType", "BankCity", "BankState", "IDSelfieCollection"])
+      type_validator = EnumAttributeValidator.new('String', ["CardNumber", "BankAccountType", "BankAccountNumber", "BankAccountBranchNumber", "BankName", "PhoneNumber", "Gender", "IdentificationNumber", "BillReferenceNumber", "BankRoutingNumber", "BankAccountName", "MaidenName", "SocialSecurity", "EmploymentName", "EmploymentAddress", "EmploymentPhone", "EmploymentOccupation", "EmploymentSupervisor", "RemittanceReason", "Relationship", "SecondLastName", "SWIFT", "BirthCountry", "SourceOfFunds", "DateOfBirth", "CardExpiration", "CardZip", "IdentificationType", "BankCity", "BankState", "IDSelfieCollection", "City", "Country", "IdentificationExpiration", "Address1"])
       return false unless type_validator.valid?(@type)
       return false if @input_type.nil?
       input_type_validator = EnumAttributeValidator.new('String', ["text", "options", "date"])
@@ -194,7 +202,7 @@ module MassPayRubySdk
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] type Object to be assigned
     def type=(type)
-      validator = EnumAttributeValidator.new('String', ["CardNumber", "BankAccountType", "BankAccountNumber", "BankAccountBranchNumber", "BankName", "PhoneNumber", "Gender", "IdentificationNumber", "BillReferenceNumber", "BankRoutingNumber", "BankAccountName", "MaidenName", "SocialSecurity", "EmploymentName", "EmploymentAddress", "EmploymentPhone", "EmploymentOccupation", "EmploymentSupervisor", "RemittanceReason", "Relationship", "SecondLastName", "SWIFT", "BirthCountry", "SourceOfFunds", "DateOfBirth", "CardExpiration", "CardZip", "IdentificationType", "BankCity", "BankState", "IDSelfieCollection"])
+      validator = EnumAttributeValidator.new('String', ["CardNumber", "BankAccountType", "BankAccountNumber", "BankAccountBranchNumber", "BankName", "PhoneNumber", "Gender", "IdentificationNumber", "BillReferenceNumber", "BankRoutingNumber", "BankAccountName", "MaidenName", "SocialSecurity", "EmploymentName", "EmploymentAddress", "EmploymentPhone", "EmploymentOccupation", "EmploymentSupervisor", "RemittanceReason", "Relationship", "SecondLastName", "SWIFT", "BirthCountry", "SourceOfFunds", "DateOfBirth", "CardExpiration", "CardZip", "IdentificationType", "BankCity", "BankState", "IDSelfieCollection", "City", "Country", "IdentificationExpiration", "Address1"])
       unless validator.valid?(type)
         fail ArgumentError, "invalid value for \"type\", must be one of #{validator.allowable_values}."
       end
@@ -224,7 +232,8 @@ module MassPayRubySdk
           value == o.value &&
           expected_value == o.expected_value &&
           type == o.type &&
-          input_type == o.input_type
+          input_type == o.input_type &&
+          last_attr_value_used == o.last_attr_value_used
     end
 
     # @see the `==` method
@@ -236,7 +245,7 @@ module MassPayRubySdk
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [token, attr_set_token, label, validation, is_optional, value, expected_value, type, input_type].hash
+      [token, attr_set_token, label, validation, is_optional, value, expected_value, type, input_type, last_attr_value_used].hash
     end
 
     # Builds the object from hash

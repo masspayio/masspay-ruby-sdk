@@ -19,7 +19,7 @@ module MassPayRubySdk
       @api_client = api_client
     end
     # Get MassPay Card Information
-    # Retrieves MassPay card information that is associated with the provided wallet token
+    # This **GET** endpoint is used to retrieve MassPay card information associated with the provided wallet token. <br> You can use this endpoint to obtain information about the MassPay card associated with the wallet. <br> To use this endpoint, you need to provide the `user_token` and `wallet_token` as required parameters in the URL Path. <br> The response will include a JSON object containing details for the MassPay card, including the card number, balance, status.
     # @param user_token [String] Token representing the user who owns the wallet
     # @param wallet_token [String] Token representing the wallet
     # @param [Hash] opts the optional parameters
@@ -30,7 +30,7 @@ module MassPayRubySdk
     end
 
     # Get MassPay Card Information
-    # Retrieves MassPay card information that is associated with the provided wallet token
+    # This **GET** endpoint is used to retrieve MassPay card information associated with the provided wallet token. &lt;br&gt; You can use this endpoint to obtain information about the MassPay card associated with the wallet. &lt;br&gt; To use this endpoint, you need to provide the &#x60;user_token&#x60; and &#x60;wallet_token&#x60; as required parameters in the URL Path. &lt;br&gt; The response will include a JSON object containing details for the MassPay card, including the card number, balance, status.
     # @param user_token [String] Token representing the user who owns the wallet
     # @param wallet_token [String] Token representing the wallet
     # @param [Hash] opts the optional parameters
@@ -68,7 +68,7 @@ module MassPayRubySdk
       return_type = opts[:debug_return_type] || 'GetWalletCardInfo200Response'
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['api_key', 'AUTHORIZER_NAME']
+      auth_names = opts[:debug_auth_names] || ['AUTHORIZER_NAME']
 
       new_options = opts.merge(
         :operation => :"CardApi.get_wallet_card_info",
@@ -88,7 +88,7 @@ module MassPayRubySdk
     end
 
     # Update MassPay Card Information
-    # Update card pin number or/and status
+    # This **PUT** endpoint is used to update the MassPay card information for a provided user token and wallet token. <br> You can use this endpoint to help your users manage their MassPay card information, including updating their card PIN number or status. <br> To use this endpoint, you need to provide the `user_token` and `wallet_token` as parameters in the URL Path, along with the parameters in the request Query, including the card pin number or(and) status. <br> The endpoint will then update the card information for the provided user and wallet token.
     # @param user_token [String] Token representing the user who owns the wallet
     # @param wallet_token [String] Token representing the wallet
     # @param [Hash] opts the optional parameters
@@ -101,7 +101,7 @@ module MassPayRubySdk
     end
 
     # Update MassPay Card Information
-    # Update card pin number or/and status
+    # This **PUT** endpoint is used to update the MassPay card information for a provided user token and wallet token. &lt;br&gt; You can use this endpoint to help your users manage their MassPay card information, including updating their card PIN number or status. &lt;br&gt; To use this endpoint, you need to provide the &#x60;user_token&#x60; and &#x60;wallet_token&#x60; as parameters in the URL Path, along with the parameters in the request Query, including the card pin number or(and) status. &lt;br&gt; The endpoint will then update the card information for the provided user and wallet token.
     # @param user_token [String] Token representing the user who owns the wallet
     # @param wallet_token [String] Token representing the wallet
     # @param [Hash] opts the optional parameters
@@ -152,7 +152,7 @@ module MassPayRubySdk
       return_type = opts[:debug_return_type]
 
       # auth_names
-      auth_names = opts[:debug_auth_names] || ['api_key', 'AUTHORIZER_NAME']
+      auth_names = opts[:debug_auth_names] || ['AUTHORIZER_NAME']
 
       new_options = opts.merge(
         :operation => :"CardApi.update_wallet_card_info",
