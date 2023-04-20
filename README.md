@@ -1,4 +1,4 @@
-<img src="./docs/logo.png" width="200" />
+<img src="./docs/logo.webp" width="200" />
 
 # masspay_ruby_sdk ![Gem](https://img.shields.io/gem/v/masspay_ruby_sdk) ![Ruby](https://img.shields.io/badge/ruby->=%202.7-blue)
 
