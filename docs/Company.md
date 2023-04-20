@@ -16,7 +16,7 @@
 require 'masspay_ruby_sdk'
 
 instance = MassPayRubySdk::Company.new(
-  company_logo: [B@5afe540b,
+  company_logo: [B@5e89a1b,
   services: null,
   rating: 4.5,
   description: Pontual is a top leading provider with over 10 years of industry experience,
