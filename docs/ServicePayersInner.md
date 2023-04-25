@@ -23,7 +23,7 @@ require 'masspay_ruby_sdk'
 
 instance = MassPayRubySdk::ServicePayersInner.new(
   destination_token: null,
-  payer_logo: [B@1d49b56c,
+  payer_logo: [B@7a1cca39,
   payer_name: Elektra,
   exchange_rate: null,
   fee: 8,

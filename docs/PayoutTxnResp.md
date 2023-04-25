@@ -47,7 +47,7 @@ instance = MassPayRubySdk::PayoutTxnResp.new(
   expiration: 2019-06-26T22:32:05,
   pickup_code: 54238173,
   status: null,
-  payer_logo: [B@34dd11ba,
+  payer_logo: [B@3459a3c9,
   payer_name: Elektra,
   delivery_type: null,
   country_code: MEX,
