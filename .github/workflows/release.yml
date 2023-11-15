@@ -1,0 +1,22 @@
+name: Release
+on:
+  push:
+    branches:
+      - main # set your default branch
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release:
+    name: Release by DX Heroes
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: dxheroes/gh-action-auto-release@v1
+        with:
+          release-type: ruby
+          package-name: masspay-ruby-sdk
+        env:
+          RUBYGEMS_API_KEY: ${{ secrets.RUBYGEMS_API_KEY }}
