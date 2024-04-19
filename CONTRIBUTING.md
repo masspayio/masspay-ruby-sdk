@@ -1,13 +1,52 @@
-# Contributing
+# Contributing to masspay_ruby_sdk
 
-## Release new version
+Thank you for considering contributing to masspay_ruby_sdk! We appreciate your efforts in helping to improve our project. Please take a moment to review this document for guidelines on how to contribute.
 
-All commit messages have to be in the format of the [conventionalcommits.org](https://conventionalcommits.org) specification.
+## Ways to Contribute
 
-1. Make sure your are on the `main` branch.
-2. Make sure you have committed everything and your code is working.
-3. Run `npx standard-version`
-4. Push your changes to the repository and the `main` branch.
-5. The Github Action will automatically release a new version to rubygems.org (https://rubygems.org/gems/masspay_ruby_sdk).
+There are several ways you can contribute to this project:
 
-For more detailed instructions read [standard-version documentation](https://github.com/conventional-changelog/standard-version).
+- Reporting issues
+- Suggesting enhancements
+- Submitting pull requests for bug fixes or new features
+
+## How to Contribute
+
+### Reporting Issues
+
+If you encounter any issues or bugs, please use the GitHub issue tracker to report them. When reporting issues, please provide as much detail as possible, including:
+
+- A clear and descriptive title
+- A detailed description of the issue
+- Steps to reproduce the issue, if applicable
+- Any relevant error messages or screenshots
+
+### Suggesting Enhancements
+
+If you have suggestions for enhancements or new features, please feel free to open an issue on GitHub. Please provide a clear and detailed description of your suggestion, including why you think it would be beneficial for the project.
+
+### Submitting Pull Requests
+
+We welcome pull requests for bug fixes, improvements, and new features. Before submitting a pull request, please ensure the following:
+
+- Fork the repository and create a new branch for your changes.
+- Make your changes, and provide clear and descriptive commit messages.
+- Test your changes thoroughly.
+- Ensure that your code follows the existing coding style and guidelines.
+- Update any relevant documentation or examples to reflect your changes.
+
+## Testing
+
+Run the IRB console to test the SDK:
+
+```bash
+irb -I lib -r masspay_ruby_sdk
+```
+
+Now you can use the MasspayRubySdk class to interact with the API in the console.
+
+## Contact
+
+If you have any further questions or need assistance, please feel free to reach out to us at [info@masspay.io](mailto:info@masspay.io).
+
+Thank you again for your interest in contributing to masspay_ruby_sdk
