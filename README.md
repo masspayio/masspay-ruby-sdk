@@ -1,197 +1,162 @@
-<img src="./docs/logo.webp" width="200" />
+<div align='center' class='text-center'>
+  <img alt='' src='./assets/logo.webp' width='200' />
+  <h1 align='center' class='text-center'>masspay_ruby_sdk</h1>
+</div>
 
-# masspay_ruby_sdk ![Gem](https://img.shields.io/gem/v/masspay_ruby_sdk) ![Ruby](https://img.shields.io/badge/ruby->=%202.7-blue)
+<div align='center' class='text-center'>
+  <a aria-label='Version' href='#'>
+    <img alt='' src='https://img.shields.io/badge/version-2.0.0-blue' />
+  </a>
+  <a aria-label='License' href='https://opensource.org/licenses/MIT'>
+    <img alt='' src='https://img.shields.io/badge/License-MIT-blue.svg' />
+  </a>
+</div>
 
-MassPayRubySdk - the Ruby gem for the MassPay API
+<!---
+Repository badges to consider: (https://github.com/aleen42/badges)
+  a. [![Build Status](https://travis-ci.com/username/repository.svg?branch=master)](https://travis-ci.com/)
+  b. [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+  c. [![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)]()
+  d. [![Downloads](https://img.shields.io/badge/downloads-1000%2Fmonth-brightgreen.svg)]()
+  e. [![Contributors](https://img.shields.io/github/contributors/username/repository.svg)]()
+--->
 
-MassPay API
+Welcome to our masspay_ruby_sdk. We are committed to providing you with the best SDK services experience possible. Please use our step-by-step instructions to become familiar with how to use our SDK.
 
-- API version: 0.1.4
-- Package version: 1.0.0
+- Current API version: 1.0.0
+- Current package version: 2.0.0
 
-For more information, please visit [https://www.masspay.io](https://www.masspay.io)
+## Table of Contents
+
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Features](#features)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
+- [Frequently Asked Questions (FAQ)](#frequently-asked-questions-faq)
+
+## Requirements
+
+<!--- Instructions on what the user must do before using the SDK. --->
+
+- Ruby version >= 2.7.
+- MassPay.io API credentials.
 
 ## Installation
 
-### Bundler
+<!--- Instructions on how to install and set up the SDK.--->
 
-```shell
-bundle add masspay_ruby_sdk
-```
+Use this command to install masspay_ruby_sdk in your terminal.
 
-### Global Installation
-
-```shell
+```bash
 gem install masspay_ruby_sdk
 ```
 
-## Getting Started
+## Usage
 
-Please follow the [installation](#installation) procedure and then run the following code:
+<!--- Description how users can use the SDK.--->
 
-### Ruby
+In case that you successfully installed our masspay_ruby_sdk please execute this code:
 
 ```ruby
-# Load the gem
 require 'masspay_ruby_sdk'
 
-# Setup authorization
-MassPayRubySdk.configure do |config|
-  # Configure API key authorization: AUTHORIZER_NAME
-  config.api_key['AUTHORIZER_NAME'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  config.api_key_prefix['AUTHORIZER_NAME'] = 'Bearer'
-end
-
-api_instance = MassPayRubySdk::AccountApi.new
-
-begin
-  #Get current available balance
-  result = api_instance.get_account_balance
-  p result
-rescue MassPayRubySdk::ApiError => e
-  puts "Exception when calling AccountApi->get_account_balance: #{e}"
-end
-
+client = MasspayRubySdk.client({ bearer_auth: 'YOUR_BEARER_TOKEN' })
+client.account_service.get_account_balance
 ```
 
-### Rails
+## Features
 
-Create a file `config/initializers/masspay_ruby_sdk.rb` with the following content:
+<!--- Highlighting the key features and capabilities of the SDK. --->
 
-```ruby
+Kindly note that every URI is relative to _https://api.masspay.io/v1.0.0_.
 
-# Setup authorization
-MassPayRubySdk.configure do |config|
-  # Configure API key authorization: AUTHORIZER_NAME
-  config.api_key['AUTHORIZER_NAME'] = 'YOUR API KEY'
-  # Uncomment the following line to set a prefix for the API key, e.g. 'Bearer' (defaults to nil)
-  config.api_key_prefix['AUTHORIZER_NAME'] = 'Bearer'
-end
-```
-
-Then call the API:
-
-```ruby
-api_instance = MassPayRubySdk::AccountApi.new
-
-begin
-  #Get current available balance
-  result = api_instance.get_account_balance
-  p result
-rescue MassPayRubySdk::ApiError => e
-  puts "Exception when calling AccountApi->get_account_balance: #{e}"
-end
-
-```
-
-## Documentation for API Endpoints
-
-All URIs are relative to *https://api.masspay.io/v0.1.4*
+The table displays all features categorized based on their specific purposes.
 
 Class | Method | HTTP request | Description
------------- | ------------- | ------------- | -------------
-*MassPayRubySdk::AccountApi* | [**get_account_balance**](docs/AccountApi.md#get_account_balance) | **GET** /account/balance | Get current available balance
-*MassPayRubySdk::AccountApi* | [**get_account_statement**](docs/AccountApi.md#get_account_statement) | **GET** /account/statement | Get certified account statement
-*MassPayRubySdk::AttributeApi* | [**get_attrs**](docs/AttributeApi.md#get_attrs) | **GET** /attribute/{user_token}/{destination_token}/{currency} | Get user attributes for destination_token
-*MassPayRubySdk::AttributeApi* | [**store_attrs**](docs/AttributeApi.md#store_attrs) | **POST** /attribute/{user_token}/{destination_token}/{currency} | Store user attributes
-*MassPayRubySdk::CardApi* | [**get_wallet_card_info**](docs/CardApi.md#get_wallet_card_info) | **GET** /wallet/{user_token}/{wallet_token}/card | Get MassPay Card Information
-*MassPayRubySdk::CardApi* | [**update_wallet_card_info**](docs/CardApi.md#update_wallet_card_info) | **PUT** /wallet/{user_token}/{wallet_token}/card | Update MassPay Card Information
-*MassPayRubySdk::CatalogApi* | [**get_cheapest_country_services**](docs/CatalogApi.md#get_cheapest_country_services) | **GET** /country/{country_code}/cheapest | Gets a list of Companies and their cheapest service offerings for the given country code.
-*MassPayRubySdk::CatalogApi* | [**get_country_list**](docs/CatalogApi.md#get_country_list) | **GET** /country/list | Gets a list of countries where services offered.
-*MassPayRubySdk::CatalogApi* | [**get_country_services**](docs/CatalogApi.md#get_country_services) | **GET** /country/{country_code} | Gets a list of Companies and their service offerings for the given country code.
-*MassPayRubySdk::CatalogApi* | [**get_destination_token_alternatives**](docs/CatalogApi.md#get_destination_token_alternatives) | **GET** /service/{destination_token}/alternatives | Returns list of alternative service to a provided service
-*MassPayRubySdk::CatalogApi* | [**get_user_agreement**](docs/CatalogApi.md#get_user_agreement) | **GET** /user-agreements | Get User Agreement
-*MassPayRubySdk::CatalogApi* | [**get_user_agreements_names**](docs/CatalogApi.md#get_user_agreements_names) | **OPTIONS** /user-agreements | Get Available User Agreements
-*MassPayRubySdk::KYCApi* | [**find_attributes_velocity**](docs/KYCApi.md#find_attributes_velocity) | **POST** /attribute/{user_token}/velocity | Attributes velocity check
-*MassPayRubySdk::KYCApi* | [**get_user_user_token_kyc_au10tix**](docs/KYCApi.md#get_user_user_token_kyc_au10tix) | **GET** /user/{user_token}/kyc/au10tix | Get an Au10tix session link
-*MassPayRubySdk::KYCApi* | [**get_user_user_token_kyc_veriff**](docs/KYCApi.md#get_user_user_token_kyc_veriff) | **GET** /user/{user_token}/kyc/veriff | Get a Veriff session link
-*MassPayRubySdk::KYCApi* | [**upload_id_photos**](docs/KYCApi.md#upload_id_photos) | **POST** /user/{user_token}/kyc/id | Upload ID Photos
-*MassPayRubySdk::LoadApi* | [**cancel_user_load**](docs/LoadApi.md#cancel_user_load) | **DELETE** /load/{user_token} | Reverse a user load
-*MassPayRubySdk::LoadApi* | [**create_autopay_rule**](docs/LoadApi.md#create_autopay_rule) | **POST** /wallet/{user_token}/{wallet_token}/autopay | Add autopay rule
-*MassPayRubySdk::LoadApi* | [**delete_autopay_rule**](docs/LoadApi.md#delete_autopay_rule) | **DELETE** /wallet/{user_token}/{wallet_token}/autopay | Delete autopay rule
-*MassPayRubySdk::LoadApi* | [**get_autopay_rules**](docs/LoadApi.md#get_autopay_rules) | **GET** /wallet/{user_token}/{wallet_token}/autopay | Get all autopay rules
-*MassPayRubySdk::LoadApi* | [**get_user_loads_by_token**](docs/LoadApi.md#get_user_loads_by_token) | **GET** /load/{user_token} | Get history of loads by user token
-*MassPayRubySdk::LoadApi* | [**load_user**](docs/LoadApi.md#load_user) | **POST** /load/{user_token} | Initiate a load transaction
-*MassPayRubySdk::LoadApi* | [**load_user_token_put**](docs/LoadApi.md#load_user_token_put) | **PUT** /load/{user_token} | Resend Load Notification
-*MassPayRubySdk::LoadApi* | [**resend_balance_notification**](docs/LoadApi.md#resend_balance_notification) | **PUT** /wallet/{user_token} | Resend Balance Notification
-*MassPayRubySdk::PayoutApi* | [**commit_payout_txn**](docs/PayoutApi.md#commit_payout_txn) | **PUT** /payout/{user_token}/{payout_token} | Commit payout transaction
-*MassPayRubySdk::PayoutApi* | [**get_payout_status**](docs/PayoutApi.md#get_payout_status) | **GET** /payout/{user_token}/{payout_token} | Get status of a payout by payout token
-*MassPayRubySdk::PayoutApi* | [**get_transaction_confirmation_details**](docs/PayoutApi.md#get_transaction_confirmation_details) | **PATCH** /payout/{user_token}/{payout_token} | Get transaction confirmation details
-*MassPayRubySdk::PayoutApi* | [**get_user_payouts_by_token**](docs/PayoutApi.md#get_user_payouts_by_token) | **GET** /payout/{user_token} | Get history of payouts by user token
-*MassPayRubySdk::PayoutApi* | [**initiate_payout**](docs/PayoutApi.md#initiate_payout) | **POST** /payout/{user_token} | Initiate a payout transaction
-*MassPayRubySdk::SpendBackApi* | [**get_user_spendbacks_by_token**](docs/SpendBackApi.md#get_user_spendbacks_by_token) | **GET** /spendback/{user_token} | Get history of spend backs by user token
-*MassPayRubySdk::SpendBackApi* | [**initiate_spendback**](docs/SpendBackApi.md#initiate_spendback) | **POST** /spendback/{user_token} | Initiate a spend back transaction
-*MassPayRubySdk::TaxApi* | [**get_tax_users**](docs/TaxApi.md#get_tax_users) | **GET** /tax | Get List Of Users Annual Balance
-*MassPayRubySdk::UserApi* | [**create_user**](docs/UserApi.md#create_user) | **POST** /user | Create a user
-*MassPayRubySdk::UserApi* | [**get_user_by_token**](docs/UserApi.md#get_user_by_token) | **GET** /user/{user_token} | Get user by user token
-*MassPayRubySdk::UserApi* | [**get_user_history**](docs/UserApi.md#get_user_history) | **GET** /user/{user_token}/history | Transactions history
-*MassPayRubySdk::UserApi* | [**update_user**](docs/UserApi.md#update_user) | **PUT** /user/{user_token} | Updated user
-*MassPayRubySdk::UserApi* | [**user_lookup**](docs/UserApi.md#user_lookup) | **GET** /user/lookup | Lookup an existing user
-*MassPayRubySdk::WalletApi* | [**create_autopay_rule**](docs/WalletApi.md#create_autopay_rule) | **POST** /wallet/{user_token}/{wallet_token}/autopay | Add autopay rule
-*MassPayRubySdk::WalletApi* | [**delete_autopay_rule**](docs/WalletApi.md#delete_autopay_rule) | **DELETE** /wallet/{user_token}/{wallet_token}/autopay | Delete autopay rule
-*MassPayRubySdk::WalletApi* | [**get_autopay_rules**](docs/WalletApi.md#get_autopay_rules) | **GET** /wallet/{user_token}/{wallet_token}/autopay | Get all autopay rules
-*MassPayRubySdk::WalletApi* | [**get_wallet**](docs/WalletApi.md#get_wallet) | **GET** /wallet/{user_token} | Retrieve all available wallets for a user
-*MassPayRubySdk::WalletApi* | [**get_wallet_card_info**](docs/WalletApi.md#get_wallet_card_info) | **GET** /wallet/{user_token}/{wallet_token}/card | Get MassPay Card Information
-*MassPayRubySdk::WalletApi* | [**update_wallet_card_info**](docs/WalletApi.md#update_wallet_card_info) | **PUT** /wallet/{user_token}/{wallet_token}/card | Update MassPay Card Information
+------------ | ------------- | ------------- | ------------- 
+_MasspayRubySdk.account_service_ | **get_account_balance** | **GET** /payout/account/balance | Get current available balance
+_MasspayRubySdk.account_service_ | **get_account_statement** | **GET** /payout/account/statement | Get certified account statement
+_MasspayRubySdk.attribute_service_ | **get_all_attrs** | **GET** /payout/attribute/{user_token} | Get all stored user attributes
+_MasspayRubySdk.attribute_service_ | **store_attrs** | **POST** /payout/attribute/{user_token}/{destination_token}/{currency} | Store user attributes
+_MasspayRubySdk.attribute_service_ | **get_attrs** | **GET** /payout/attribute/{user_token}/{destination_token}/{currency} | Get user attributes for destination_token
+_MasspayRubySdk.card_service_ | **get_wallet_card_info** | **GET** /payout/wallet/{user_token}/{wallet_token}/card | Get MassPay card information
+_MasspayRubySdk.card_service_ | **update_wallet_card_info** | **PUT** /payout/wallet/{user_token}/{wallet_token}/card | Update MassPay card information
+_MasspayRubySdk.catalog_service_ | **get_country_list** | **GET** /payout/country/list | Gets a list of countries where services offered.
+_MasspayRubySdk.catalog_service_ | **get_country_services** | **GET** /payout/country/{country_code} | Gets a list of Companies and their service offerings for the given country code.
+_MasspayRubySdk.catalog_service_ | **get_cheapest_country_services** | **GET** /payout/country/{country_code}/cheapest | Gets a list of Companies and their cheapest service offerings for the given country code.
+_MasspayRubySdk.catalog_service_ | **get_destination_token_alternatives** | **GET** /payout/service/{destination_token}/alternatives | Returns list of alternative service to a provided service
+_MasspayRubySdk.catalog_service_ | **get_destination_token** | **GET** /payout/service/{destination_token} | Returns provided service
+_MasspayRubySdk.catalog_service_ | **get_user_agreement** | **GET** /payout/user-agreements | Get user agreement
+_MasspayRubySdk.catalog_service_ | **get_user_agreements_names** | **OPTIONS** /payout/user-agreements | Get available user agreements
+_MasspayRubySdk.kyc_service_ | **find_attributes_velocity** | **POST** /payout/attribute/{user_token}/velocity | Attributes velocity check
+_MasspayRubySdk.kyc_service_ | **get_user_user_token_kyc_au_10_tix** | **GET** /payout/user/{user_token}/kyc/au10tix | Get an Au10tix session link
+_MasspayRubySdk.kyc_service_ | **upload_id_photos** | **POST** /payout/user/{user_token}/kyc/id | Upload ID photos
+_MasspayRubySdk.kyc_service_ | **get_user_user_token_kyc_attempts** | **GET** /payout/user/{user_token}/kyc/id | Get all KYC sessions
+_MasspayRubySdk.kyc_service_ | **get_user_user_token_kyc_veriff** | **GET** /payout/user/{user_token}/kyc/veriff | Get a Veriff session link
+_MasspayRubySdk.load_service_ | **resend_balance_notification** | **PUT** /payout/wallet/{user_token} | Resend balance notification
+_MasspayRubySdk.load_service_ | **load_user** | **POST** /payout/load/{user_token} | Initiate a load transaction
+_MasspayRubySdk.load_service_ | **get_user_loads_by_token** | **GET** /payout/load/{user_token} | Get history of loads by user token
+_MasspayRubySdk.load_service_ | **resend_load_notification** | **PUT** /payout/load/{user_token} | Resend load notification
+_MasspayRubySdk.load_service_ | **cancel_user_load** | **DELETE** /payout/load/{user_token} | Reverse a user load
+_MasspayRubySdk.payout_service_ | **initiate_payout** | **POST** /payout/{user_token} | Initiate a payout transaction
+_MasspayRubySdk.payout_service_ | **get_user_payouts_by_token** | **GET** /payout/{user_token} | Get history of payouts by user token
+_MasspayRubySdk.payout_service_ | **commit_payout_txn** | **PUT** /payout/{user_token}/{payout_token} | Commit payout transaction
+_MasspayRubySdk.payout_service_ | **get_payout_status** | **GET** /payout/{user_token}/{payout_token} | Get status of a payout by payout token
+_MasspayRubySdk.payout_service_ | **get_transaction_confirmation_details** | **PATCH** /payout/{user_token}/{payout_token} | Get transaction confirmation details
+_MasspayRubySdk.spend_back_service_ | **get_user_spendbacks_by_token** | **GET** /payout/spendback/{user_token} | Get history of spend backs by user token
+_MasspayRubySdk.spend_back_service_ | **initiate_spendback** | **POST** /payout/spendback/{user_token} | Initiate a spend back transaction
+_MasspayRubySdk.subaccount_service_ | **create_subaccount** | **POST** /subaccount | Create a subaccount
+_MasspayRubySdk.subaccount_service_ | **get_subaccount_subaccount_token_ubo** | **POST** /subaccount/{subaccount_token}/ubo | Add UBOs to subaccount
+_MasspayRubySdk.subaccount_service_ | **upload_subaccount_ubo_id** | **POST** /subaccount/{subaccount_token}/ubo/{ubo_token}/id | Upload UBO ID photos
+_MasspayRubySdk.tax_service_ | **get_tax_users** | **GET** /payout/tax | Get list of users' annual balance
+_MasspayRubySdk.tax_service_ | **get_tax_interview_link** | **GET** /payout/{user_token}/tax | Get link for tax interview
+_MasspayRubySdk.user_service_ | **create_user** | **POST** /payout/user | Create a user
+_MasspayRubySdk.user_service_ | **get_user_by_token** | **GET** /payout/user/{user_token} | Get user by user token
+_MasspayRubySdk.user_service_ | **update_user** | **PUT** /payout/user/{user_token} | Updated user
+_MasspayRubySdk.user_service_ | **user_lookup** | **GET** /payout/user/lookup | Lookup an existing user
+_MasspayRubySdk.user_service_ | **get_user_history** | **GET** /payout/user/{user_token}/history | Transactions history
+_MasspayRubySdk.user_service_ | **get_all_users_history** | **GET** /payout/user/history | All Users' Transactions history
+_MasspayRubySdk.wallet_service_ | **get_wallet** | **GET** /payout/wallet/{user_token} | Retrieve all available wallets for a user
+_MasspayRubySdk.wallet_service_ | **get_autopayout_rules** | **GET** /payout/wallet/{user_token}/{wallet_token}/autopayout | Get all AutoPayout rules
+_MasspayRubySdk.wallet_service_ | **create_autopayout_rule** | **POST** /payout/wallet/{user_token}/{wallet_token}/autopayout | Add AutoPayout rule
+_MasspayRubySdk.wallet_service_ | **delete_autopayout_rule** | **DELETE** /payout/wallet/{user_token}/{wallet_token}/autopayout | Delete AutoPayout rule
 
 
-## Documentation for Models
+## Contributing
 
- - [MassPayRubySdk::ApiResponse](docs/ApiResponse.md)
- - [MassPayRubySdk::AttrTxn](docs/AttrTxn.md)
- - [MassPayRubySdk::AttrValue](docs/AttrValue.md)
- - [MassPayRubySdk::AttrVelocityRequestInner](docs/AttrVelocityRequestInner.md)
- - [MassPayRubySdk::AttrsRequirement](docs/AttrsRequirement.md)
- - [MassPayRubySdk::AutopayResp](docs/AutopayResp.md)
- - [MassPayRubySdk::AutopayRule](docs/AutopayRule.md)
- - [MassPayRubySdk::AvailableBalanceTxnResp](docs/AvailableBalanceTxnResp.md)
- - [MassPayRubySdk::CompaniesResp](docs/CompaniesResp.md)
- - [MassPayRubySdk::Company](docs/Company.md)
- - [MassPayRubySdk::Country](docs/Country.md)
- - [MassPayRubySdk::Exception](docs/Exception.md)
- - [MassPayRubySdk::FoundUser](docs/FoundUser.md)
- - [MassPayRubySdk::GetAccountStatement200Response](docs/GetAccountStatement200Response.md)
- - [MassPayRubySdk::GetTransactionConfirmationDetails200Response](docs/GetTransactionConfirmationDetails200Response.md)
- - [MassPayRubySdk::GetUserAgreement200Response](docs/GetUserAgreement200Response.md)
- - [MassPayRubySdk::GetUserAgreementsNames200ResponseInner](docs/GetUserAgreementsNames200ResponseInner.md)
- - [MassPayRubySdk::GetUserUserTokenKycAu10tix200Response](docs/GetUserUserTokenKycAu10tix200Response.md)
- - [MassPayRubySdk::GetUserUserTokenKycVeriff200Response](docs/GetUserUserTokenKycVeriff200Response.md)
- - [MassPayRubySdk::GetWalletCardInfo200Response](docs/GetWalletCardInfo200Response.md)
- - [MassPayRubySdk::IDUpload](docs/IDUpload.md)
- - [MassPayRubySdk::LoadTxn](docs/LoadTxn.md)
- - [MassPayRubySdk::LoadTxnResp](docs/LoadTxnResp.md)
- - [MassPayRubySdk::Loads](docs/Loads.md)
- - [MassPayRubySdk::PayoutTxn](docs/PayoutTxn.md)
- - [MassPayRubySdk::PayoutTxnCommitResp](docs/PayoutTxnCommitResp.md)
- - [MassPayRubySdk::PayoutTxnResp](docs/PayoutTxnResp.md)
- - [MassPayRubySdk::ResendBalanceNotification200Response](docs/ResendBalanceNotification200Response.md)
- - [MassPayRubySdk::Service](docs/Service.md)
- - [MassPayRubySdk::ServicePayersInner](docs/ServicePayersInner.md)
- - [MassPayRubySdk::ServicePayersInnerExchangeRateInner](docs/ServicePayersInnerExchangeRateInner.md)
- - [MassPayRubySdk::SpendBackTxn](docs/SpendBackTxn.md)
- - [MassPayRubySdk::SpendBackTxnResp](docs/SpendBackTxnResp.md)
- - [MassPayRubySdk::SpendBacks](docs/SpendBacks.md)
- - [MassPayRubySdk::StoredUser](docs/StoredUser.md)
- - [MassPayRubySdk::TaxYearUserResp](docs/TaxYearUserResp.md)
- - [MassPayRubySdk::TxnHistoryResp](docs/TxnHistoryResp.md)
- - [MassPayRubySdk::UpdateUser](docs/UpdateUser.md)
- - [MassPayRubySdk::User](docs/User.md)
- - [MassPayRubySdk::WalletTxnResp](docs/WalletTxnResp.md)
+<!--- Explaining how users can contribute to the project. Include guidelines for bug reports, feature requests, and pull requests.--->
 
+To learn more about the possibility of contributing to the subsequent development of this SDK, please visit our [contributing page](./CONTRIBUTING.md). Kindly note that contributions are limited by a unique set of rules in order to ensure clarity.
 
-## Documentation for Authorization
+## License
 
+<!--- Including the license information for your project and the specification of the license type (e.g., MIT, Apache 2.0). --->
 
-### AUTHORIZER_NAME
+Please refer to the [license page](./LICENSE) for more information about the license type and the corresponding terms of use.
 
+## Contact
 
-- **Type**: API key
-- **API key parameter name**: Authorization
-- **Location**: HTTP header
+<!--- Providing contact information or links to relevant communication channels (e.g., email, Slack, Gitter).--->
 
+We kindly request that you direct all questions to our support email:
 
-## Author
+- [info@masspay.io](mailto:info@masspay.io)
 
-info@masspay.io
+## Frequently Asked Questions (FAQ)
 
+<!--- Including a section addressing frequently asked questions about the SDK.--->
+
+**Q: Where may I obtain an API key?**
+A: Please visit our [registration page](https://developers.masspay.io/) if you do not have your unique API key.
+
+<!---  Questions that can be prefilled
+What are the main functions or features supported by the SDK?
+Are there any examples or tutorials to help me understand how to use the SDK effectively?
+How can I get help or assistance if I encounter issues while using the SDK?
+How often is the SDK updated, and how can users stay informed about updates?
+Are there any best practices recommended for maintaining security while using the SDK?
+What are the licensing terms for using the SDK?
+--->
