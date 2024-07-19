@@ -1,7 +1,7 @@
 =begin
 MassPay API
 
-The version of the OpenAPI document: 0.1.4
+The version of the OpenAPI document: 1.0.0
 Contact: info@masspay.io
 
 NOTE: This file is auto generated. Do not edit the file manually.
@@ -21,6 +21,7 @@ require 'masspay_ruby_sdk/api/kyc_service'
 require 'masspay_ruby_sdk/api/load_service'
 require 'masspay_ruby_sdk/api/payout_service'
 require 'masspay_ruby_sdk/api/spend_back_service'
+require 'masspay_ruby_sdk/api/subaccount_service'
 require 'masspay_ruby_sdk/api/tax_service'
 require 'masspay_ruby_sdk/api/user_service'
 require 'masspay_ruby_sdk/api/wallet_service'

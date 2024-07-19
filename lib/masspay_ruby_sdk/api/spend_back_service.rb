@@ -1,7 +1,7 @@
 =begin
 MassPay API
 
-The version of the OpenAPI document: 0.1.4
+The version of the OpenAPI document: 1.0.0
 Contact: info@masspay.io
 
 NOTE: This file is auto generated. Do not edit the file manually.
@@ -17,16 +17,16 @@ module MasspayRubySdk
     end
 
     # Get history of spend backs by user token
-    # GET /spendback/{user_token}
+    # GET /payout/spendback/{user_token}
     def get_user_spendbacks_by_token user_token
-      @client.get("spendback/#{user_token}") 
+      @client.get("payout/spendback/#{user_token}") 
     end
 
     # Initiate a spend back transaction
-    # POST /spendback/{user_token}
+    # POST /payout/spendback/{user_token}
     # @param body The body of the request
     def initiate_spendback user_token, body
-      @client.post("spendback/#{user_token}") do |req|
+      @client.post("payout/spendback/#{user_token}") do |req|
         req.body = body
       end
     end

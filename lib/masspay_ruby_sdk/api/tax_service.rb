@@ -1,7 +1,7 @@
 =begin
 MassPay API
 
-The version of the OpenAPI document: 0.1.4
+The version of the OpenAPI document: 1.0.0
 Contact: info@masspay.io
 
 NOTE: This file is auto generated. Do not edit the file manually.
@@ -17,18 +17,21 @@ module MasspayRubySdk
     end
 
     # Get list of users' annual balance
-    # GET /tax
+    # GET /payout/tax
     # @param query_params The query parameters
     def get_tax_users query_params={}
-      @client.get("tax") do |req|
+      @client.get("payout/tax") do |req|
         req.params = query_params
       end
     end
 
     # Get link for tax interview
-    # GET /{user_token}/tax
-    def get_tax_interview_link user_token
-      @client.get("#{user_token}/tax") 
+    # GET /payout/{user_token}/tax
+    # @param query_params The query parameters
+    def get_tax_interview_link user_token, query_params={}
+      @client.get("payout/#{user_token}/tax") do |req|
+        req.params = query_params
+      end
     end
 
   end

@@ -1,7 +1,7 @@
 =begin
 MassPay API
 
-The version of the OpenAPI document: 0.1.4
+The version of the OpenAPI document: 1.0.0
 Contact: info@masspay.io
 
 NOTE: This file is auto generated. Do not edit the file manually.
@@ -17,16 +17,16 @@ module MasspayRubySdk
     end
 
     # Get current available balance
-    # GET /account/balance
+    # GET /payout/account/balance
     def get_account_balance 
-      @client.get("account/balance") 
+      @client.get("payout/account/balance") 
     end
 
     # Get certified account statement
-    # GET /account/statement
+    # GET /payout/account/statement
     # @param query_params The query parameters
     def get_account_statement query_params={}
-      @client.get("account/statement") do |req|
+      @client.get("payout/account/statement") do |req|
         req.params = query_params
       end
     end

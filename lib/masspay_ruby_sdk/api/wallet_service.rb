@@ -1,7 +1,7 @@
 =begin
 MassPay API
 
-The version of the OpenAPI document: 0.1.4
+The version of the OpenAPI document: 1.0.0
 Contact: info@masspay.io
 
 NOTE: This file is auto generated. Do not edit the file manually.
@@ -17,31 +17,31 @@ module MasspayRubySdk
     end
 
     # Retrieve all available wallets for a user
-    # GET /wallet/{user_token}
+    # GET /payout/wallet/{user_token}
     def get_wallet user_token
-      @client.get("wallet/#{user_token}") 
+      @client.get("payout/wallet/#{user_token}") 
     end
 
-    # Get all AutoPay rules
-    # GET /wallet/{user_token}/{wallet_token}/autopay
-    def get_autopay_rules user_token, wallet_token
-      @client.get("wallet/#{user_token}/#{wallet_token}/autopay") 
+    # Get all AutoPayout rules
+    # GET /payout/wallet/{user_token}/{wallet_token}/autopayout
+    def get_autopayout_rules user_token, wallet_token
+      @client.get("payout/wallet/#{user_token}/#{wallet_token}/autopayout") 
     end
 
-    # Add AutoPay rule
-    # POST /wallet/{user_token}/{wallet_token}/autopay
+    # Add AutoPayout rule
+    # POST /payout/wallet/{user_token}/{wallet_token}/autopayout
     # @param body The body of the request
-    def create_autopay_rule user_token, wallet_token, body
-      @client.post("wallet/#{user_token}/#{wallet_token}/autopay") do |req|
+    def create_autopayout_rule user_token, wallet_token, body
+      @client.post("payout/wallet/#{user_token}/#{wallet_token}/autopayout") do |req|
         req.body = body
       end
     end
 
-    # Delete AutoPay rule
-    # DELETE /wallet/{user_token}/{wallet_token}/autopay
+    # Delete AutoPayout rule
+    # DELETE /payout/wallet/{user_token}/{wallet_token}/autopayout
     # @param query_params The query parameters
-    def delete_autopay_rule user_token, wallet_token, query_params={}
-      @client.delete("wallet/#{user_token}/#{wallet_token}/autopay") do |req|
+    def delete_autopayout_rule user_token, wallet_token, query_params={}
+      @client.delete("payout/wallet/#{user_token}/#{wallet_token}/autopayout") do |req|
         req.params = query_params
       end
     end

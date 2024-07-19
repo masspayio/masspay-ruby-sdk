@@ -1,7 +1,7 @@
 =begin
 MassPay API
 
-The version of the OpenAPI document: 0.1.4
+The version of the OpenAPI document: 1.0.0
 Contact: info@masspay.io
 
 NOTE: This file is auto generated. Do not edit the file manually.
@@ -20,7 +20,7 @@ module MasspayRubySdk
     # @param [Hash] faraday_options A customizable set of options to be passed to Faraday. (default: {}) (see: [Faraday::Connection#initialize](https://www.rubydoc.info/github/lostisland/faraday/Faraday%2FConnection:initialize))
     def initialize(options = {}, faraday_options = {})
 
-      faraday_options[:url] ||= options[:url] || "https://api.masspay.io/v0.1.4"
+      faraday_options[:url] ||= options[:url] || "https://api.masspay.io/v1.0.0"
 
       @client = Faraday.new(faraday_options) do |builder|
         builder.request :json
@@ -70,6 +70,10 @@ module MasspayRubySdk
 
     def spend_back_service
       MasspayRubySdk::SpendBackService.new(@client)
+    end
+
+    def subaccount_service
+      MasspayRubySdk::SubaccountService.new(@client)
     end
 
     def tax_service
